@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="login.component.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+<div class="back">
+  <c-container >
+    <c-row class="justify-content-center">
+      <c-col md="8">
+        <c-card-group>
+          <c-card class="p-4 card-width">
+            <c-card-body>
+              <form (ngSubmit)="login()" cForm>
+                <h1>Login</h1>
+                <p class="text-medium-emphasis">Sign In to your account</p>
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <i class="fa-regular fa-user"></i>                  </span>
+                  <input  [(ngModel)]="email" name="email" autoComplete="username" cFormControl placeholder="email" />
+                </c-input-group>
+                <c-input-group class="mb-4">
+                  <span cInputGroupText>
+                    <i class="fa-solid fa-lock"></i>
+                   </span>
+                  <input
+                  [(ngModel)]="password" name="password"
+                  cFormControl
+                    placeholder="Password"
+                    type="password"
+                  />
+                </c-input-group>
+                <div class="text-danger" *ngIf="errorbool">{{errMessage}}</div>
+                <c-row>
+                  <c-col xs="6">
+                    <button class="btn btn-outline-primary" (click)="login()" cButton class="px-4" color="primary">
+                      Login
+                    </button>
+                  </c-col>
+                  <c-col class="text-right" xs="6">
+                   <a routerLink="/forget-password"> <button  cButton class="px-0" color="link">
+                      Forgot password?
+                    </button></a>
+                  </c-col>
+                </c-row>
+              </form>
+            </c-card-body>
+          </c-card>
+          <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5 p-4 card-width">
+            <c-card-body class="text-center">
+                <div>
+                    <h2>Sign up</h2>
+                    <p class="text-center">Join our community today and start accessing exclusive features tailored for you. Take the first step towards a better experience!</p>
+                    <button [active]="true" cButton  color="primary" routerLink="/register">
+                       <i>Register Now !</i>
+                    </button>
+                </div>
+            </c-card-body>
+         </c-card>        
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>
+</body>
+</html>

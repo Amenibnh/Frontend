@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="box" *ngIf="this.user">
+    <form (submit)="updateProfile($event)">
+
+      <img src="http://127.0.0.1:3001/uploads/{{ this.user.profileImage }}" alt="Profile Image">
+      <label for="profileImage">EDIT PIC</label>
+    <input type="file" id="profileImage" name="profileImage" (change)="onFileChange($event)" accept="image/*" hidden>
+     <br>  
+      <!-- <button  (click)="open()" >Afficher QR</button> -->
+   
+    <input type="text" name="name" class="form-control form-control-lg" [(ngModel)]="user.firstname"  required >
+    <input type="email" name="email" class="form-control form-control-lg" [(ngModel)]="user.email"  required >
+    <input type="tel" name="phone" class="form-control form-control-lg" [(ngModel)]="user.phone" required >
+    <div>
+     
+
+    <button (click)="cancelUpdate()">CANCEL</button>
+    <button type="submit">DONE</button>
+    </div>
+
+    <br>
+    <div  >
+        <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="myAngularxQrCode" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
+      <a [href]="qrCodeDownloadLink" download="qrcode">download</a>
+    
+      
+    </div>
+    
+  </form>
+  </div>
+   <!-- Loading Spinner -->
+   <div class="loading-spinner" *ngIf="!this.user">
+    <div class="spinner-border text-light" role="status"></div>
+  
+    <span class="sr-only text-light">Loading...</span>
+ 
+ </div>
+ 
+
+
+</body>
+
+
+</html>

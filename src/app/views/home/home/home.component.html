@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareLoveAssist Website </title>
+    <link rel="stylesheet" href="home.component.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="https://th.bing.com/th/id/R.5d4b497cab4082068e529db67c184e39?rik=Pjr1ceSoFq1UiA&riu=http%3a%2f%2fwww.freeiconspng.com%2fuploads%2fhands-children-child-care-png-2.png&ehk=61dyG7jQYAy29PgZsJG3yJilf8zO1nHqRkCEmBRJZGE%3d&risl=&pid=ImgRaw&r=0"
+                    class="logo">
+                <ul id="sidemenu">
+                    <li> <a href="#/ameni#header">Home</a></li>
+                    <li> <a href="#/ameni#about">About</a></li>
+                    <li> <a href="#/ameni#services">Services</a></li>
+                    <li> <a href="#/ameni#portfolio">Portfolio</a></li>
+                    <li> <a href="#/ameni#contact">Contact</a></li>
+                    <li> <a href="#/login">Login</a></li>
+                    <i class="fas fa-xmark" (click)="closemenu()"></i>
+                </ul>
+                <!-- <img src="../assets/img/moon.png" id="icon"> -->
+                <i class="fas fa-bars" (click)="openmenu()"></i>
+            </nav>
+
+            <div class="header-text">
+                <h1>Welcome to <span>CareLoveAssist</span></h1>
+                <p>Your companion in tracking persons with disabilities<br>I'm <span>Ameni</span> and I'm delighted to
+                    welcome you</p>
+            </div>
+
+        </div>
+    </div>
+    <!-- ----------about------------- -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+
+                <div class="about-col-1">
+                    <img src="https://th.bing.com/th/id/OIP.qul_xvmRM9p54HafuL8v6QAAAA?rs=1&pid=ImgDetMain">
+                </div>
+
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>As the founder of CareLoveAssist, I am deeply passionate about improving the lives of persons
+                        with disabilities. I strive to create innovative solutions that empower individuals and promote
+                        inclusivity. My mission is to provide comprehensive tracking and support services, ensuring that
+                        every person receives the care and assistance they deserve. Together, let's make a difference in
+                        the lives of those in need.</p>
+                        <div class="tab-titles">
+                            <p class="tab-links" [class.active-link]="activeTab === 'tracking'"
+                                (click)="opentab('tracking')">Tracking</p>
+                            <p class="tab-links" [class.active-link]="activeTab === 'support'" (click)="opentab('support')">
+                                Support</p>
+                            <p class="tab-links" [class.active-link]="activeTab === 'inclusivity'"
+                                (click)="opentab('inclusivity')">Inclusivity</p>
+                        </div>
+                        
+                        
+                    <div class="tab-contents active-tab" id="tracking">
+                        <ul>
+                            <li><span>Advanced Tracking</span> Stay connected with our advanced tracking system tailored
+                                for individuals with disabilities. From daily activities to specific needs, our
+                                application ensures comprehensive monitoring. </li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="support">
+                        <ul>
+                            <li><span>Personalized Support</span> Receive personalized support services designed to
+                                cater to individual requirements. Our team is dedicated to providing the care and
+                                assistance needed for a comfortable experience.</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="inclusivity">
+                        <ul>
+                            <li><span>Inclusive Environment</span> Join our inclusive community where everyone is
+                                welcomed and supported. We believe in creating an environment that encourages
+                                participation and engagement, regardless of abilities.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ----------services------------- -->
+    <div id="services">
+        <div class="container">
+            <h1 class="sub-title">Our Services</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fas fa-qrcode"></i>
+                    <h2>QR Code Generation</h2>
+                    <p>Generate unique QR codes for individuals to access specialized assistance and support services.
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+                <div>
+                    <i class="fas fa-utensils"></i>
+                    <h2>Meal Tracking</h2>
+                    <p>Track daily meals and nutritional intake to ensure individuals receive appropriate dietary
+                        support.</p>
+                    <a href="#">Learn More</a>
+                </div>
+                <div>
+                    <i class="fas fa-hands-helping"></i>
+                    <h2>Personalized Assistance</h2>
+                    <p>Offer personalized assistance and support services tailored to individual needs and requirements.
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----------Portfolio------------- -->
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">Success Stories</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="../assets/images/pexels-cottonbro-studio-5054352.jpg">
+                    <div class="layer">
+                        <h3>Empowerment through Technology</h3>
+                        <p>Discover how our app is empowering individuals with disabilities to live fuller lives by
+                            facilitating access to essential services and promoting autonomy.</p>
+                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="../assets/images/pexels-shvets-production-6980231.jpg">
+                    <div class="layer">
+                        <h3>Real Stories, Real Impact</h3>
+                        <p>Explore real success stories and testimonials from individuals whose lives have been
+                            positively impacted by our app.</p>
+                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="../assets/images/pexels-marcus-aurelius-4063860.jpg">
+                    <div class="layer">
+                        <h3>Inspiring Testimonials</h3>
+                        <p>Get inspired by the stories of individuals who have experienced real improvements in their
+                            lives thanks to our app.</p>
+                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+            <a href="" class="btn">See More</a>
+        </div>
+    </div>
+
+    <!-- ----------contact------------- -->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa-solid fa-paper-plane"></i>testappdev2024&#64;gmail.com</p>
+                    <p><i class="fa-solid fa-square-phone"></i>+21623740615</p>
+                    <div class="social-icons">
+                        <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://twitter.com/"><i class="fa-brands fa-twitter-square"></i></a>
+                        <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <a href="../assets/images/my-cv.pdf" download class="btn btn2">Download CV</a>
+                </div>
+                <div class="contact-right">
+                  <form>
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                  </form>
+                  <span id="msg">Form submitted successfully!</span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2024 CareLoveAssist. All rights reserved. Designed with <i class="fa-solid fa-heart"></i> by Ameni.</p>
+        </div>        
+    </div>
+    
+    <!-- <script>
+        const scriptURL = '1Vra_h0-8LoiNlAsu4Yg5MYhgbQ494GVsrAxH0a28BROw8mhOyj6VNDPX'
+        const form = document.forms['submit-to-google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script> -->
+      
+<!-- <script>
+    var icon = document.getElementById("icon");
+
+    icon.onclick = function(){
+        document.body.classList.toggle("dark-theme")
+        if(document.body.classList.contains("dark-theme")){
+            icon.src="../assets/img/sun.png"
+        }else{
+            icon.src="../assets/img/moon.png"
+        }
+    }
+</script> -->
+</body>
+
+</html>

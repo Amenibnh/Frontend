@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<!-- <app-widgets-dropdown></app-widgets-dropdown>
+
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>Clients</c-card-header>
+      <c-card-body>
+        <c-row>
+          <c-col md="6" xl="6" xs="12">
+            <c-row>
+              <c-col sm="6">
+                <div class="border-start border-start-4 border-start-info py-1 px-3 mb-3">
+                  <div class="text-medium-emphasis small">New Clients</div>
+                  <div class="fs-5 fw-semibold">{{ newUsersCount }}</div>
+                </div>
+              </c-col>
+
+              <c-col sm="6">
+                <div class="border-start border-start-4 border-start-danger py-1 px-3 mb-3">
+                  <div class="text-medium-emphasis small">
+                    Recurring Clients
+                  </div>
+                  <div class="fs-5 fw-semibold">{{ RecurringUserCount }}</div>
+                </div>
+              </c-col>
+
+            </c-row>
+
+            <hr class="mt-0" />
+
+            <div *ngIf="dailyStatistics.length > 0">
+              <div class="progress-group mb-4" *ngFor="let stat of dailyStatistics">
+                <div class="progress-group-prepend">
+                  <span class="text-medium-emphasis small">{{ stat.date }}</span>
+                </div>
+                <div class="progress-group-bars">
+                  <c-progress thin>
+                    <c-progress-bar color="info" [value]="stat.newUsersPercentage"></c-progress-bar>
+                  </c-progress>
+                  <c-progress thin>
+                    <c-progress-bar color="danger" [value]="stat.totalCountPercentage"></c-progress-bar>
+                  </c-progress>
+                </div>
+              </div>
+            </div>
+
+            <hr class="mt-0" />
+
+            <div class="progress-group mb-4">
+              <div class="progress-group-header">
+                <svg cIcon class="icon icon-lg me-2" name="cilUser"></svg>
+                <span>Male</span>
+                <span class="ms-auto font-semibold">{{ malePercentage.toFixed() }}%</span>
+              </div>
+              <div class="progress-group-bars">
+                <c-progress thin>
+                  <c-progress-bar color="warning" [value]="malePercentage"></c-progress-bar>
+                </c-progress>
+              </div>
+            </div>
+            <div class="progress-group mb-5">
+              <div class="progress-group-header">
+                <svg cIcon class="icon icon-lg me-2" name="cilUserFemale"></svg>
+                <span>Female</span>
+                <span class="ms-auto font-semibold">{{ femalePercentage.toFixed() }}%</span>
+              </div>
+              <div class="progress-group-bars">
+                <c-progress thin>
+                  <c-progress-bar color="warning" [value]="femalePercentage"></c-progress-bar>
+                </c-progress>
+              </div>
+            </div>
+
+          </c-col>
+        </c-row>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+
+
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>Users</c-card-header>
+      <c-card-body>
+        <table [hover]="true" [responsive]="true" [striped]="true" align="middle" cTable class="mb-0 border">
+          <thead cTableColor="light">
+            <tr>
+              <th class="text-center">
+                <svg cIcon name="cilPeople"></svg>
+              </th>
+              <th>User</th>
+              <th class="text-center">Country</th>
+              <th>Usage</th>
+              <th>Activity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users; index as i">
+
+              <td class="text-center">
+                <div style="position: relative; display: inline-block;">
+                  Avatar
+                  <c-avatar size="50px"
+                    [src]="user?.profileImage ? 'http://127.0.0.1:3001/uploads/' + user.profileImage : ''"
+                    [status]="getStatus(user?.status)" style="border-radius: 100%; overflow: hidden;">
+                  </c-avatar>
+
+                  Cercle de statut
+                  <div style="position: absolute; bottom: 1px; right: 1px;">
+                    <span class="status-circle" [ngClass]="getStatus(user?.status)"></span>
+                  </div>
+                </div>
+              </td>
+
+
+
+              <td>
+                <div>{{ user.firstname }}</div>
+                <div class="small text-medium-emphasis text-nowrap">
+                  <span>
+                    {{user.status}}|Registered: {{ user.registered }}
+                  </span>
+                </div>
+              </td>
+              <td class="text-center">
+                <ng-container *ngIf="user.country === 'Tunis'">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1em" viewBox="0 0 301 201">
+                    <g fill="none">
+                      <path fill="#e70013" d="M.5.5h300v200H.5z" />
+                      <circle cx="150.5" cy="100.5" r="50" fill="#fff" />
+                      <circle cx="150.5" cy="100.5" r="37.5" fill="#e70013" />
+                      <circle cx="160.5" cy="100.5" r="30" fill="#fff" />
+                      <path fill="#e70013" d="m138 100.5l40.703-13.225l-25.156 34.624V79.102l25.156 34.624z" />
+                    </g>
+                  </svg>
+                </ng-container>
+
+                <ng-container *ngIf="user.country === 'USA'">
+                  <svg cIcon name="cif-us" size="xl"></svg>
+                </ng-container>
+
+                <ng-container *ngIf="user.country === 'France'">
+                  <svg cIcon name="cif-fr" size="xl"></svg>
+                </ng-container>
+              </td>
+              <td>
+                <div class="d-flex justify-content-between">
+                  <div class="float-start">
+                    <strong>{{ user.usage }}%</strong>
+                  </div>
+                  <div class="float-end ms-1 text-nowrap">
+                    <small class="text-medium-emphasis">
+                      {{ user.period }}
+                    </small>
+                  </div>
+                </div>
+                <c-progress thin>
+                  <c-progress-bar [value]="user.usage" [ngClass]="getProgressBarColor(user.usage)"></c-progress-bar>
+                </c-progress>
+
+              </td>
+
+              <td>
+                <div class="small text-medium-emphasis">Last login</div>
+                <div class="fw-semibold text-nowrap">{{ user.activity }}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row> -->

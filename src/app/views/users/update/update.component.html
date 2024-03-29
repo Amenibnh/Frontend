@@ -1,0 +1,43 @@
+<div class="card-header bg-primary">
+    <h3 class="text-light">Update User</h3>
+</div>
+<div class="card-body p-4">
+
+    <div *ngIf="errMessage" class="alert alert-danger" role="alert">
+        {{ errMessage }}
+    </div>
+    <!-- <div *ngIf="message === 'success'" class="alert alert-success" role="alert">
+    Update successful!
+  </div>
+  
+  <div *ngIf="message === 'failed'" class="alert alert-danger" role="alert">
+    Update failed. Please try again.
+  </div> -->
+    <div class="card-body p-4">
+        <form (ngSubmit)="updateUser($event, user._id)">
+            <div class="mb-3">
+                <label for="name">Name</label>
+                <input type="text" name="firstname" class="form-control form-control-lg" [(ngModel)]="user.firstname"
+                    placeholder="Enter name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control form-control-lg" [(ngModel)]="user.email"
+                    placeholder="Enter email" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" class="form-control form-control-lg" [(ngModel)]="user.phone"
+                    placeholder="Enter phone" required>
+            </div>
+            <div class="mb-3">
+            <label for="profileImage" class="form-label">Select Image</label>
+            <input type="file" name="profileImage" (change)="onFileChange($event)" class="form-control form-control-lg">
+        </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Update</button>
+                <a routerLink="/users/user"><button type="button"
+                        class="btn btn-danger btn-block btn-lg">Back</button></a>
+            </div>
+        </form>
+    </div>

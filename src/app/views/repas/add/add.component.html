@@ -1,0 +1,55 @@
+<div class="card-header bg-primary">
+    <h3 class="text-light">Add New Repa</h3>
+</div>
+<div class="card-body p-4">
+
+    <div *ngIf="errMessage" class="alert alert-danger" role="alert">
+        {{ errMessage }}
+    </div>
+
+    <div class="card-body p-4">
+        <form (ngSubmit)="addRepa($event)">
+            <div class="mb-3">
+                <label for="nomRepa">Nom Repa</label>
+                <input type="text" name="nomRepa" class="form-control form-control-lg" [(ngModel)]="repa.nomRepa"
+                    placeholder="Enter nomRepa" required>
+            </div>
+            <div class="mb-3">
+                <label for="description">Description</label>
+                <textarea name="description" class="form-control form-control-lg" [(ngModel)]="repa.description"
+                    placeholder="Enter description" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="ingredients">Ingredients</label>
+                <input type="text" name="ingredients" class="form-control form-control-lg" [(ngModel)]="repa.ingredients"
+                    placeholder="Enter ingredients" required>
+            </div>
+            <div class="mb-3">
+                <label for="price">Price</label>
+                <input type="number" name="price" class="form-control form-control-lg" [(ngModel)]="repa.price"
+                    placeholder="Enter price" required>
+            </div>
+            <div class="mb-3">
+                <label for="calories">Calories</label>
+                <input type="number" name="calories" class="form-control form-control-lg" [(ngModel)]="repa.calories"
+                    placeholder="Enter calories" required>
+            </div>
+            <div class="mb-3">
+                <label for="profileImage" class="form-label">Select Image</label>
+                <input type="file" name="profileImage" (change)="onFileChange($event)" class="form-control form-control-lg">
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Add Repa</button>
+                <a routerLink="/repas/repa">
+                    <button type="button" class="btn btn-danger btn-block btn-lg">Back</button>
+                </a>
+            </div>
+        </form>
+    </div>
+      <!-- Loading Spinner -->
+   <div class="loading-spinner" *ngIf="!this.repa">
+    <div class="spinner-border text-light" role="status"></div>
+  
+    <span class="sr-only text-light">Loading...</span>
+ 
+</div>
