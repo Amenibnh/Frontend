@@ -33,13 +33,13 @@
              <table>
                  <thead>
                      <tr>
-                        <th>ID</th>
-                         <th>Meal Date<span class="icon-arrow">&UpArrow;</span></th>
-                         <th>Dish Image<span class="icon-arrow">&UpArrow;</span></th>
-                         <th (click)="sortTable()">Dish Name <span class="icon-arrow">&UpArrow;</span></th>
-                         <th>Beneficiary<span class="icon-arrow">&UpArrow;</span></th>
-                         <th (click)="sortTable()">B Name <span class="icon-arrow">&UpArrow;</span></th>
-                         <th>Action <span class="icon-arrow">&UpArrow;</span></th>
+                        <th (click)="sortTable()">ID<span class="icon-arrow" [ngClass]="{'rotate': ascendingOrder}">&UpArrow;</span></th>
+                         <th (click)="sortTable()">Meal Date<span class="icon-arrow" [ngClass]="{'rotate': ascendingOrder}">&UpArrow;</span></th>
+                         <th (click)="sortTable()">Dish Image<span class="icon-arrow" [ngClass]="{'rotate': ascendingOrder}">&UpArrow;</span></th>
+                         <th (click)="sortTable()">Dish Name <span class="icon-arrow" [ngClass]="{'rotate': ascendingOrder}">&UpArrow;</span></th>
+                         <th (click)="sortTable()">Beneficiary<span class="icon-arrow" [ngClass]="{'rotate': ascendingOrder}">&UpArrow;</span></th>
+                         <th (click)="sortTable()">B Name <span class="icon-arrow" [ngClass]="{'rotate': ascendingOrder}">&UpArrow;</span></th>
+                         <th>Action</th>
                      </tr>
                  </thead>
                  <tbody>

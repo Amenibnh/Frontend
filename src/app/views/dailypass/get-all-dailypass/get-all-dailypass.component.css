@@ -256,9 +256,11 @@ thead th.active span.icon-arrow{
     color: #fff;
 }
 
-thead th.asc span.icon-arrow{
+thead th span.icon-arrow.rotate{
     transform: rotate(180deg);
 }
+
+
 
 thead th.active,tbody td.active {
     color: #6c00bd;

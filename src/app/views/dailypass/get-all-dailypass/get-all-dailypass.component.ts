@@ -9,6 +9,7 @@ import {GetAllDailypassService} from './get-all-dailypass.service'
 export class GetAllDailypassComponent implements OnInit {
   dailypass: any;
   ascendingOrder: boolean = true;
+  sortBy: string = ''; 
   constructor( private el: ElementRef, private dailypassService: GetAllDailypassService) { }
 
   ngOnInit(): void {
@@ -38,7 +39,8 @@ export class GetAllDailypassComponent implements OnInit {
         table_rows.forEach(row => {
           row.querySelectorAll('td')[i].classList.add('active');
         });
-
+        head.classList.toggle('asc',sort_asc);
+        
       };
     });
   }
@@ -89,7 +91,7 @@ export class GetAllDailypassComponent implements OnInit {
             const cell = cells[j];
             if (cell) {
               let txtValue = (cell.textContent || cell.innerText).trim().toUpperCase(); 
-              if (searchType === 'ID') {
+              if (searchType === 'ID') {//recherche par id
                 const cellValue = parseFloat(txtValue);
                 if (!isNaN(cellValue) && cellValue === parseFloat(filter)) {
                   shouldHide = false; // Ne pas masquer la ligne si le filtre correspond
@@ -106,7 +108,10 @@ export class GetAllDailypassComponent implements OnInit {
         rows[i].style.display = shouldHide ? 'none' : '';
       }
     }
-    
+   
+
+
+
     sortTable(): void {
       // Tri du tableau en fonction de la colonne "Dish Name"
       this.dailypass.sort((a: any, b: any) => {
