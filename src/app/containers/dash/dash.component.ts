@@ -9,7 +9,7 @@ import{navbarData} from './nav-data'
   styleUrls: ['./dash.component.css'],
 })
 export class DashComponent implements OnInit {
-  user: any = null;
+  user: any  = '';
   navData=navbarData;
 
   constructor(
@@ -20,6 +20,20 @@ export class DashComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    /**---------- */
+    this.route.paramMap.subscribe((params) => {
+      this.headerService.getLoggedInUser().subscribe(
+        (response) => {
+          this.user = response.user;
+          // console.log(this.user);
+          // console.log(this.user.profileImage);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    });
+    
     const body = this.el.nativeElement.querySelector("body");
     const sidebar = this.el.nativeElement.querySelector(".sidebar");
     const toggle = this.el.nativeElement.querySelector(".toggle");
@@ -73,19 +87,7 @@ export class DashComponent implements OnInit {
     // });
 
 
-    /**---------- */
-    this.route.paramMap.subscribe((params) => {
-      this.headerService.getLoggedInUser().subscribe(
-        (response) => {
-          this.user = response.user;
-          console.log(this.user);
-          console.log(this.user.profileImage);
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-    });
+    
   }
   logoutUser(): void {
     this.headerService.logoutUser().subscribe(

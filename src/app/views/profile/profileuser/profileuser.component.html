@@ -9,43 +9,56 @@
   <div class="box" *ngIf="this.user">
     <form (submit)="updateProfile($event)">
 
-      <img src="http://127.0.0.1:3001/uploads/{{ this.user.profileImage }}" alt="Profile Image">
+      <img src="http://127.0.0.1:3001/uploads/{{ this.user.profileImage }}" class="profile">
       <label for="profileImage">EDIT PIC</label>
     <input type="file" id="profileImage" name="profileImage" (change)="onFileChange($event)" accept="image/*" hidden>
-     <br>  
-      <!-- <button  (click)="open()" >Afficher QR</button> -->
-   
+     <br> 
+<!-- Popup CODE QR -->
+    <button  type="submit" (click)="openPopup($event)" class="b3">Afficher QR</button>
+       <div class="popup" id="popup">
+       <img src="../../../../assets/img/avatar/tick.png">
+       <h2>Thank You!</h2>
+       
+        <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="myAngularxQrCode" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+        <a [href]="qrCodeDownloadLink" download="qrcode"><i class="fa fa-download icon"></i></a>
+       
+       <button class="btn" type="button" (click)="closePopup()">OK</button>
+      </div>
+
+    
     <input type="text" name="name" class="form-control form-control-lg" [(ngModel)]="user.firstname"  required >
     <input type="email" name="email" class="form-control form-control-lg" [(ngModel)]="user.email"  required >
     <input type="tel" name="phone" class="form-control form-control-lg" [(ngModel)]="user.phone" required >
     <div>
      
 
-    <button (click)="cancelUpdate()">CANCEL</button>
-    <button type="submit">DONE</button>
+    <button (click)="cancelUpdate()" class="b1">CANCEL</button>
+    <button type="submit" class="b2">DONE</button>
     </div>
 
     <br>
-    <div  >
-        <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="myAngularxQrCode" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
-      <a [href]="qrCodeDownloadLink" download="qrcode">download</a>
     
-      
-    </div>
     
   </form>
   </div>
+
    <!-- Loading Spinner -->
    <div class="loading-spinner" *ngIf="!this.user">
     <div class="spinner-border text-light" role="status"></div>
-  
     <span class="sr-only text-light">Loading...</span>
- 
- </div>
- 
+   </div>
+ <!-- <script>
+  let popup = document.getElementById("popup");
+
+  function openPopup(){
+    popup.classList.add("open-popup");
+  }
+
+  function closePopup(){
+    popup.classList.remove("open-popup");
+  }
+ </script> -->
 
 
 </body>
-
-
 </html>

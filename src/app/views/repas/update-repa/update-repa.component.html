@@ -1,44 +1,50 @@
-<div class="card-header bg-primary">
-    <h3 class="text-light">Update Repa</h3>
-</div>
-<div class="card-body p-4">
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Repa</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
     <div *ngIf="errMessage" class="alert alert-danger" role="alert">
-        {{ errMessage }}
+      {{ errMessage }}
     </div>
+    <h1>Update Your informations</h1>
+    <form (submit)="updateRepa($event, repa._id)">
+      <div class="form-group">
+        <label for="nomRepa">Nom Repa:</label>
+        <input type="text"  name="nomRepa" class="form-control" required [(ngModel)]="repa.nomRepa">
+      </div>
+      <div class="form-group">
+        <label for="price">Description:</label>
+        <textarea  name="description" class="form-control" [(ngModel)]="repa.description" required></textarea>
+       </div>
+       <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number"  name="price" class="form-control" required [(ngModel)]="repa.price">
+      </div>
+      <div class="form-group">
+        <label for="calories">calories:</label>
+        <input type="number"  name="calories" class="form-control" required [(ngModel)]="repa.calories">
+      </div>
+      <div class="form-group">
+        <label for="profileImage">Select Image:</label>
+        <input type="file"  name="profileImage" class="form-control" required (change)="onFileChange($event)">
+      </div>
+      <br>
+      <div class="button">
+      <button type="submit" class="btn-primary">Update</button>
+      <button type="button" class="btn-secondary" routerLink="/repas/repa">Back</button>
+    </div>
+    </form>
+  </div>
+</body>
+</html>
 
-    <div class="card-body p-4">
-        <form (ngSubmit)="updateRepa($event, repa._id)">
-            <div class="mb-3">
-                <label for="nomRepa">Nom Repa</label>
-                <input type="text" name="nomRepa" class="form-control form-control-lg" [(ngModel)]="repa.nomRepa"
-                    placeholder="Enter nomRepa" required>
-            </div>
-            <div class="mb-3">
-                <label for="description">Description</label>
-                <textarea name="description" class="form-control form-control-lg" [(ngModel)]="repa.description"
-                    placeholder="Enter description" required></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="price">Price</label>
-                <input type="number" name="price" class="form-control form-control-lg" [(ngModel)]="repa.price"
-                    placeholder="Enter price" required>
-            </div>
-            <div class="mb-3">
-                <label for="calories">calories</label>
-                <input type="number" name="calories" class="form-control form-control-lg" [(ngModel)]="repa.calories"
-                    placeholder="Enter calories" required>
-            </div>
-            <div class="mb-3">
-                <label for="profileImage" class="form-label">Select Image</label>
-                <input type="file" name="profileImage" (change)="onFileChange($event)" class="form-control form-control-lg">
-            </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary btn-block btn-lg">Update</button>
-                <a routerLink="/repas/repa">
-                    <button type="button" class="btn btn-danger btn-block btn-lg">Back</button>
-                </a>
-            </div>
-        </form>
-    </div>
-</div>
+            
+        
+                
+         
+      

@@ -3,13 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileuserService } from './profileuser.service';
 import { DomSanitizer, SafeUrl, } from '@angular/platform-browser';
 import * as QRCode from 'angularx-qrcode';
-import { MatDialog } from '@angular/material/dialog';
+// import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
   selector: 'app-profileuser',
   templateUrl: './profileuser.component.html',
-  styleUrls: ['./profileuser.component.scss']
+  styleUrls: ['./profileuser.component.css']
 })
 export class ProfileuserComponent implements OnInit {
 
@@ -118,5 +118,20 @@ export class ProfileuserComponent implements OnInit {
   cancelUpdate() {
     //to refresh the page
     window.location.reload()
+  }
+
+  openPopup(event: Event) {
+    event.preventDefault();
+    let popup = document.getElementById("popup");
+    if (popup) {
+      popup.classList.add("open-popup");
+    }
+  }
+
+  closePopup() {
+    let popup = document.getElementById("popup");
+    if (popup) {
+      popup.classList.remove("open-popup");
+    }
   }
 }

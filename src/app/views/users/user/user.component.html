@@ -1,61 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User List</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">    <style>
-        /* Ajoutez un style personnalisé ici si nécessaire */
-        body {
-            background-color: #f8f9fa; /* Couleur de fond légère */
-        }
-
-        h2 {
-            color: #007bff; /* Couleur bleue Bootstrap */
-            margin-bottom: 20px; /* Marge inférieure pour l'espace */
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users List</title>
+    <link rel="stylesheet" type="text/css" href="user.component.css">
 </head>
 <body>
-    <div class="container mt-4">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>User List</h2>
-        <!-- <button class="btn btn-primary">Add User</button> -->
-    </div>
-        <div *ngIf="users && users.length > 0; else loadingUsers">
-            <table class="table table-striped">
+    <main class="table" id="customers_table">
+        <section class="table__header">
+            <h1>User List</h1>
+            <div class="input-group">
+                <input type="search" placeholder="Search Data...">
+                <img src="../../../../assets/img/avatar/search.png" alt="">
+           </div>
+            <div class="export__file">
+                <label for="export-file" class="export__file-btn" title="Export File"></label>
+                <input type="checkbox" id="export-file">
+                <div class="export__file-options">
+                    <label>Export As &nbsp; &#10140;</label>
+                    <label for="export-file" id="toPDF">PDF <img src="images/pdf.png" alt=""></label>
+                    <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""></label>
+                    <label for="export-file" id="toCSV">CSV <img src="images/csv.png" alt=""></label>
+                    <label for="export-file" id="toEXCEL">EXCEL <img src="images/excel.png" alt=""></label>
+                </div>
+            </div>
+        </section>
+        <section class="table__body" *ngIf="users && users.length > 0; else loadingUsers">
+            <table>
                 <thead>
                     <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Phone</th>
+                        <th>ID</th>
+                        <th (click)="sortTable()">Image<span class="icon-arrow" [ngClass]="{'rotate': ascendingOrder}">&UpArrow;</span></th>
+                        <th (click)="sortTable()">Name<span class="icon-arrow" [ngClass]="{'rotate': ascendingOrder}">&UpArrow;</span></th>
+                        <th (click)="sortTable()">Email<span class="icon-arrow" [ngClass]="{'rotate': ascendingOrder}">&UpArrow;</span></th>
+                        <th (click)="sortTable()">Role <span class="icon-arrow" [ngClass]="{'rotate': ascendingOrder}">&UpArrow;</span></th>
+                        <th (click)="sortTable()">Phone<span class="icon-arrow" [ngClass]="{'rotate': ascendingOrder}">&UpArrow;</span></th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of users">
-                        <td><img src="http://127.0.0.1:3001/uploads/{{ this.user.profileImage }}" alt="Profile Image" width="30" height="30"></td>
-                        <td>{{ user.firstname }}</td>
+                   <tr *ngFor="let user of users; let i = index">
+                       <td>{{ i + 1 }}</td>
+                       <td><img src="http://127.0.0.1:3001/uploads/{{ this.user.profileImage }}" alt="Profile Image" width="30" height="30"></td>
+                       <td>{{ user.firstname }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{user.role}}</td>
                         <td>{{ user.phone}}</td>
-                        <td>
-                            <button (click)="deleteUser(user._id)" class="btn btn-danger btn-sm">Delete</button>
-                    
-                            <a [href]="'/#/users/update/' + user?._id ">
-                                <button class="btn btn-success btn-sm">Update</button>
-                            </a>
-                        </td>
-                    </tr>
+                       <td>
+                            
+                        <button (click)="deleteUser(user._id)" class="btn delete">Delete</button>
+                
+                        <a [href]="'/#/users/update/' + user?._id ">
+                            <button class="btn update">Update</button>
+                        </a>
+                    </td>
+                   </tr>
+                   
                 </tbody>
             </table>
-        </div>
-
+        </section>
         <ng-template #loadingUsers>
-            <p>Loading users...</p>
-        </ng-template>
-    </div>
+           <p>Loading dailypass...</p>
+       </ng-template>
+    </main> 
 </body>
+
 </html>

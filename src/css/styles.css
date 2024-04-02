@@ -38,7 +38,7 @@
 /*----------------------------------------*/
 :root {
     /* Colors */
-    --body-color: #E4E9F7;
+    --body-color: hsl(0, 0%, 100%);
     --sidebar-color: #fff;
     --primary-color: #695cfe;
     --primary-color-light: #f6f5ff;

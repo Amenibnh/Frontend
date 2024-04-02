@@ -1,10 +1,11 @@
 body {
+  
+    background: url(../../../../assets/img/avatar/html_table.jpg) center/cover;    
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background: var(--body-color); 
     transition: var(--tran-05);
   }
 
@@ -27,7 +28,7 @@ body {
     transition: all 1s;
   }
 
-   img {
+   img.profile {
     box-sizing: border-box;
     width: 149px;
     height: 149px;
@@ -71,7 +72,7 @@ body {
     transition: 0.2 ease;
   }
 
-  button {
+  button.b1,button.b2,button.b3 {
     border: 1px solid #3498db;
     background-color: black;
     color: white;
@@ -118,8 +119,58 @@ body {
     justify-content: center;
     align-items: center;
 }
+/*---Popup code QR-----*/
+.popup{
+  width: 400px;
+  background: white;
+  border-radius: 6px;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%,-50%) scale(0.1);
+  text-align: center;
+  padding: 0 30px 30px;
+  color: #333;
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup{
+  visibility: visible;
+  top: 50%;
+  transform: translate(-50%,-50%) scale(1);
+
+}
 
 
+.popup img{
+  width: 100px;
+  margin-top: -50px;
+  border-radius: 50%;
+  box-shadow: 0 2px rgba(0, 0, 0, 0.2);
+}
+.popup h2{
+  font-size: 38px;
+  font-weight: 500;
+  margin: 30px 0 10px;
+}
+.popup button.btn{
+  width: 100%;
+  margin-top: 50px;
+  padding: 10px 0;
+  background: #6fd649;
+  color: #fff;
+  border: 0;
+  outline: none;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
   
-  
+.icon{
+  font-size: 50px;
+  color: #3498db;
+  margin-left: 5px;
+}
   

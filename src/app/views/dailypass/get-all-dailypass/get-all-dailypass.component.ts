@@ -15,7 +15,7 @@ export class GetAllDailypassComponent implements OnInit {
   ngOnInit(): void {
     this.getAllDailypass();
 
-    //1/
+    //1/Searching with ID
     const input = document.querySelector('.input-group input') as HTMLInputElement | null;
     if (input) {
       input.addEventListener('input', (event) => {
@@ -72,7 +72,7 @@ export class GetAllDailypassComponent implements OnInit {
       }
     );}
     
-  // 1. Searching for specific data of HTML table
+  // 1. Searching with ID
 
     searchTable(searchType: string = ''): void {
       const input = document.querySelector('.input-group input') as HTMLInputElement | null;

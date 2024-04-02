@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
   selector: 'app-update',
   templateUrl: './update.component.html',
-  styleUrls: ['./update.component.scss']
+  styleUrls: ['./update.component.css']
 })
 
 export class UpdateComponent {

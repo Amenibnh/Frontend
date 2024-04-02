@@ -11,13 +11,13 @@ import { brandSet, flagSet, freeSet } from '@coreui/icons';
 
 @Component({
   templateUrl: 'dashboard.component.html',
-  styleUrls: ['dashboard.component.scss']
+  styleUrls: ['dashboard.component.css']
 })
 @Injectable({
   providedIn: 'root',
 })
 export class DashboardComponent implements OnInit {
-  users: any;
+  users: any[]= [];
   malePercentage: number = 0;
   femalePercentage: number = 0;
   RecurringUserCount:number=0;

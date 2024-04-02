@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
   selector: 'app-add',
     templateUrl:'./add.component.html',
-    styleUrls: ['./add.component.scss']
+    styleUrls: ['./add.component.css']
   })
 export class AddComponent implements OnInit{
   repa: any ={};

@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
   selector: 'app-update-repa',
   templateUrl: './update-repa.component.html',
-  styleUrls: ['./update-repa.component.scss']
+  styleUrls: ['./update-repa.component.css']
 })
 export class UpdateRepaComponent {
   repa: any;
