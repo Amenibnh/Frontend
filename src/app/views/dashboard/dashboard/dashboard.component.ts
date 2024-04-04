@@ -78,40 +78,47 @@ export class DashboardComponent implements OnInit {
       return 'bg-danger';
     }
   }
-// Activity------------------
-  formatLastActivity(lastActivity: any) {
-    const activityDate = new Date(lastActivity);
-    const currentDate = new Date();
+// Last deconnexion------------------
+ formatLastActivity(lastActivity: any): string {
+  const activityDate = new Date(lastActivity);
+  const currentDate = new Date();
 
-    const diffMilliseconds = currentDate.getTime() - activityDate.getTime();
-    const diffSeconds = Math.floor(diffMilliseconds / 1000);
-    const diffMinutes = Math.floor(diffSeconds / 60);
-    const diffHours = Math.floor(diffMinutes / 60);
-    const diffDays = Math.floor(diffHours / 24);
-    const diffMonths = Math.floor(diffDays / 30);
+  // Calculer la différence de mois entre les dates
+  const diffMonths = (currentDate.getFullYear() - activityDate.getFullYear()) * 12 + (currentDate.getMonth() - activityDate.getMonth());
+  
+  if (diffMonths === 0) {
+      const diffMilliseconds = currentDate.getTime() - activityDate.getTime();
+      const diffSeconds = Math.floor(diffMilliseconds / 1000);
+      const diffMinutes = Math.floor(diffSeconds / 60);
+      const diffHours = Math.floor(diffMinutes / 60);
+      const diffDays = Math.floor(diffHours / 24);
 
-    if (diffSeconds < 60) {
-      return 'just now';
-    } else if (diffMinutes === 1) {
-      return 'a minute ago';
-    } else if (diffMinutes < 60) {
-      return `${diffMinutes} minutes ago`;
-    } else if (diffHours === 1) {
-      return 'an hour ago';
-    } else if (diffHours < 24) {
-      return `${diffHours} hours ago`;
-    } else if (diffDays === 1) {
-      return 'Yesterday';
-    } else if (diffDays < 7) {
-      return `${diffDays} days ago`;
-    } else if (diffMonths === 1) {
+      if (diffSeconds < 60) {
+          return 'just now';
+      } else if (diffMinutes === 1) {
+          return 'a minute ago';
+      } else if (diffMinutes < 60) {
+          return `${diffMinutes} minutes ago`;
+      } else if (diffHours === 1) {
+          return 'an hour ago';
+      } else if (diffHours < 24) {
+          return `${diffHours} hours ago`;
+      } else if (diffDays === 1) {
+          return 'Yesterday';
+      } else if (diffDays < 7) {
+          return `${diffDays} days ago`;
+      } else {
+          return `${diffDays} days ago`;
+      }
+  } else if (diffMonths === 1) {
       return 'Last month';
-    } else if (diffMonths < 12) {
+  } else if (diffMonths < 12) {
       return `${diffMonths} months ago`;
-    } else {
+  } else {
       return 'more than a year ago';
-    }
   }
+}
+
 
 
   
