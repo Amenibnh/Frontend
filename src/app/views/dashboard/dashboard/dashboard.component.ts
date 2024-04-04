@@ -55,15 +55,18 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  
-  getStatus(status: string) {
-    if (status === 'connected') {
-      return 'success'
-    } else {
-      return 'info'
-
-    }
+  // Status------------------------------
+  getStatus(status: string): string {
+    switch (status) {
+      case 'connected':
+          return 'green'; 
+      case 'disconnected':
+          return 'gray'; 
+      default:
+          return ''; 
   }
+  }
+  // Color Bar Usage------------------
   getProgressBarColor(usage: number): string {
     if (usage < 30) {//inférieures à 30%
       return 'bg-success';
@@ -75,6 +78,7 @@ export class DashboardComponent implements OnInit {
       return 'bg-danger';
     }
   }
+// Activity------------------
   formatLastActivity(lastActivity: any) {
     const activityDate = new Date(lastActivity);
     const currentDate = new Date();
@@ -108,6 +112,9 @@ export class DashboardComponent implements OnInit {
       return 'more than a year ago';
     }
   }
+
+
+  
   //pourcentages de newUsersCount et totalCount pour chaque jours
   calculateDailyStatistics() {
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -136,18 +143,3 @@ export class DashboardComponent implements OnInit {
     });
   }
 }
-// public mainChart: IChartProps = {};
-  // public chart: Array<IChartProps> = [];
-  // public trafficRadioGroup = new UntypedFormGroup({
-  //   trafficRadio: new UntypedFormControl('Month')
-  // });
-  // initCharts(): void {
-  //   this.mainChart = this.chartsData.mainChart;
-
-  // }
-
-  // setTrafficPeriod(value: string): void {
-  //   this.trafficRadioGroup.setValue({ trafficRadio: value });
-  //   this.chartsData.initMainChart(value);
-  //   this.initCharts();
-  // }
