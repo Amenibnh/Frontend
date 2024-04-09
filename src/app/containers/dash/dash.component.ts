@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { DashService } from './dash.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import{navbarData} from './nav-data'
 
 @Component({
@@ -11,7 +11,7 @@ import{navbarData} from './nav-data'
 export class DashComponent implements OnInit {
   user: any  = '';
   navData=navbarData;
-
+  pageTitle:string='Dashboard';
   constructor(
     private el: ElementRef,
     private route: ActivatedRoute,
@@ -20,6 +20,8 @@ export class DashComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
+  
     /**---------- */
     this.route.paramMap.subscribe((params) => {
       this.headerService.getLoggedInUser().subscribe(
@@ -27,12 +29,32 @@ export class DashComponent implements OnInit {
           this.user = response.user;
           // console.log(this.user);
           // console.log(this.user.profileImage);
+          if(this.user.role==="admin"){
+            this.navData = [
+              { label: 'Dashboard', url: '/dashboard', icon: 'fa-solid fa-house icon' },
+              { label: 'DailyPass', url: '/dailypass/dailypass', icon: 'fa-solid fa-ticket icon' },
+              { label: 'Repa', url: '/repas/repa', icon: 'fa-solid fa-utensils icon' },
+              { label: 'Users', url: '/users/user', icon: 'fa-solid fa-users icon' },
+              { label: 'Profile', url: '/Profile/profile', icon: 'fa-solid fa-user-check icon' },
+            ];
+          }else{
+            this.navData=[
+              { label: 'Profile', url: '/Profile/profile', icon: 'fa-solid fa-user-check icon' },
+            ];
+          }
+          this.router.events.subscribe(event => {
+            if (event instanceof NavigationEnd) {
+              const currentRoute = this.navData.find(data => data.url === event.urlAfterRedirects);
+              this.pageTitle = currentRoute ? currentRoute.label : 'Dashboard';
+            }
+          });
         },
         (error) => {
           console.error(error);
         }
       );
     });
+    
     
     const body = this.el.nativeElement.querySelector("body");
     const sidebar = this.el.nativeElement.querySelector(".sidebar");
@@ -86,8 +108,6 @@ export class DashComponent implements OnInit {
     //   }
     // });
 
-
-    
   }
   logoutUser(): void {
     this.headerService.logoutUser().subscribe(
@@ -115,4 +135,6 @@ export class DashComponent implements OnInit {
       }
     );
   }
+
+
 }

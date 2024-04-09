@@ -59,7 +59,7 @@ if(this.email=="" ){
         // Enregistrement de token de l'utilisateur(local stotage)
         localStorage.setItem('token', token);
         
-        if(Response.role==="admin" || Response.role==="user"){
+        if(Response.role==="admin"){
         // Save user details in local storage
         // localStorage.setItem('user', JSON.stringify(Response.user));
 
@@ -73,6 +73,9 @@ if(this.email=="" ){
         // Use the router to navigate to the dashboard
         this.router.navigate(['/dashboard']);
         
+        }else if( Response.role==="user"){
+          this.router.navigate(['/Profile/profile']);
+
         }else{
         // this.errMessage ="unauthorized"
         // this.errorbool = !this.errorbool;

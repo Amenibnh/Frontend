@@ -1,83 +1,7 @@
 
-<!-- <app-widgets-dropdown></app-widgets-dropdown>
+<!-- <app-widgets-dropdown></app-widgets-dropdown> -->
 
-<c-row>
-  <c-col xs>
-    <c-card class="mb-4">
-      <c-card-header>Clients</c-card-header>
-      <c-card-body>
-        <c-row>
-          <c-col md="6" xl="6" xs="12">
-            <c-row>
-              <c-col sm="6">
-                <div class="border-start border-start-4 border-start-info py-1 px-3 mb-3">
-                  <div class="text-medium-emphasis small">New Clients</div>
-                  <div class="fs-5 fw-semibold">{{ newUsersCount }}</div>
-                </div>
-              </c-col>
 
-              <c-col sm="6">
-                <div class="border-start border-start-4 border-start-danger py-1 px-3 mb-3">
-                  <div class="text-medium-emphasis small">
-                    Recurring Clients
-                  </div>
-                  <div class="fs-5 fw-semibold">{{ RecurringUserCount }}</div>
-                </div>
-              </c-col>
-
-            </c-row>
-
-            <hr class="mt-0" />
-
-            <div *ngIf="dailyStatistics.length > 0">
-              <div class="progress-group mb-4" *ngFor="let stat of dailyStatistics">
-                <div class="progress-group-prepend">
-                  <span class="text-medium-emphasis small">{{ stat.date }}</span>
-                </div>
-                <div class="progress-group-bars">
-                  <c-progress thin>
-                    <c-progress-bar color="info" [value]="stat.newUsersPercentage"></c-progress-bar>
-                  </c-progress>
-                  <c-progress thin>
-                    <c-progress-bar color="danger" [value]="stat.totalCountPercentage"></c-progress-bar>
-                  </c-progress>
-                </div>
-              </div>
-            </div>
-
-            <hr class="mt-0" />
-
-            <div class="progress-group mb-4">
-              <div class="progress-group-header">
-                <svg cIcon class="icon icon-lg me-2" name="cilUser"></svg>
-                <span>Male</span>
-                <span class="ms-auto font-semibold">{{ malePercentage.toFixed() }}%</span>
-              </div>
-              <div class="progress-group-bars">
-                <c-progress thin>
-                  <c-progress-bar color="warning" [value]="malePercentage"></c-progress-bar>
-                </c-progress>
-              </div>
-            </div>
-            <div class="progress-group mb-5">
-              <div class="progress-group-header">
-                <svg cIcon class="icon icon-lg me-2" name="cilUserFemale"></svg>
-                <span>Female</span>
-                <span class="ms-auto font-semibold">{{ femalePercentage.toFixed() }}%</span>
-              </div>
-              <div class="progress-group-bars">
-                <c-progress thin>
-                  <c-progress-bar color="warning" [value]="femalePercentage"></c-progress-bar>
-                </c-progress>
-              </div>
-            </div>
-
-          </c-col>
-        </c-row>
-      </c-card-body>
-    </c-card>
-  </c-col>
-</c-row>-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -92,9 +16,7 @@
 
 <body>
     <main class="table" id="customers_table">
-        <div>
-            <h2>Statistic</h2>
-        </div>
+
         <section class="table__header">
             <h1>Users </h1>
             <div class="input-group">
@@ -748,6 +670,85 @@
            <p>Loading dailypass...</p>
        </ng-template>
     </main> 
+    
+    <main class="table">
+         <c-card>
+            <c-card-header>Clients</c-card-header>
+            <c-card-body>
+              <c-row>
+                <c-col>
+                    <div style="display: flex;">
+                        <div style="width: 48%;">
+                            <div class="border-start border-start-info">
+                                <div style="margin-left: 10px;">New Clients</div>
+                                <div style="margin-left: 10px;">{{ newUsersCount }}</div>
+                            </div>
+                        </div>
+                        <div style="width: 48%;">
+                            <div class="border-start ">
+                                <div style="margin-left: 10px;">Recurring Clients</div>
+                                <div style="margin-left: 10px;">{{ RecurringUserCount }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+      
+                  <hr/>
+      
+                  <div *ngIf="dailyStatistics.length > 0">
+                    <div class="progress-group mb-4" *ngFor="let stat of dailyStatistics">
+                      <div class="progress-group-prepend">
+                        <span class="text-medium-emphasis small">{{ stat.date }}</span>
+                      </div>
+                      <div class="progress-group-bars">
+                        <c-progress class="custom-progress">
+                          <c-progress-bar color="info" [value]="stat.newUsersPercentage"  class="custom-progress-bar"></c-progress-bar>
+                        </c-progress>
+                       
+                        <c-progress class="custom-progress">
+                          <c-progress-bar color="danger" [value]="stat.totalCountPercentage"  class="custom-progress-bar"></c-progress-bar>
+                        </c-progress>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <hr/>
+      
+                  <div class="progress-group mb-4">
+                    <div class="progress-group-header">
+                      <img src="../../../../assets/male-women/business-man.png" width="25" heigth="25">
+                      <span>Male</span>
+                      <span class="ms-auto font-semibold">{{ malePercentage.toFixed() }}%</span>
+                    </div>
+                    <div>
+                      <c-progress class="custom-progress">
+                        <c-progress-bar color="warning" [value]="malePercentage"  class="custom-progress-bar"></c-progress-bar>
+                      </c-progress>
+                    </div>
+                  </div>
+                  <div class="progress-group mb-5">
+                    <div class="progress-group-header">
+                        <img src="../../../../assets/male-women/businesswoman.png" width="25" heigth="25" >
+                        <span>Female</span>
+                      <span class="ms-auto font-semibold">{{ femalePercentage.toFixed() }}%</span>
+                    </div>
+                    <div>
+                      <c-progress class="custom-progress">
+                        <c-progress-bar color="warning" [value]="femalePercentage"  class="custom-progress-bar"></c-progress-bar>
+                      </c-progress>
+                    </div>
+                  </div>
+      
+                </c-col>
+              </c-row>
+            </c-card-body>
+          </c-card>
+        </main>
+ 
+
+   
+    
+    
 </body>
 
 </html>

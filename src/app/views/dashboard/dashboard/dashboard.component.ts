@@ -43,10 +43,11 @@ export class DashboardComponent implements OnInit {
           return user;
         });
         this.RecurringUserCount=response.totalCount;
-        this.newUsersCount = response.newUsersCount ||0;
+        this.newUsersCount = response.newUsersCount;
         this.malePercentage = response.malePercentage;
         this.femalePercentage = response.femalePercentage;
-        this.calculateDailyStatistics();
+
+        // this.calculateDailyStatistics();
        
         console.log(this.users);
       },
@@ -123,30 +124,37 @@ export class DashboardComponent implements OnInit {
 
   
   //pourcentages de newUsersCount et totalCount pour chaque jours
-  calculateDailyStatistics() {
-    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    const dailyStatisticsMap = new Map<string, { newUsersCount: number, totalCount: number }>();
-
-    // Initialize dailyStatisticsMap with 0 counts for each day
-    daysOfWeek.forEach(day => {
-      dailyStatisticsMap.set(day, { newUsersCount: 0, totalCount: 0 });
-    });
-
-    this.users.forEach((user: any) => {
-      const registrationDate = new Date(user.registered);
-      const dayOfWeek = daysOfWeek[registrationDate.getDay()]; // Getting the day of the week
-      const dailyStatistics = dailyStatisticsMap.get(dayOfWeek);
-      if (dailyStatistics) {
-        dailyStatistics.newUsersCount += 1;
-        dailyStatistics.totalCount += 1;
-      }
-    });
-
-    dailyStatisticsMap.forEach((value, key) => {
-      const { newUsersCount, totalCount } = value;
-      const newUsersPercentage = (newUsersCount / this.newUsersCount) * 100;
-      const totalCountPercentage = (totalCount / this.RecurringUserCount) * 100;
-      this.dailyStatistics.push({ date: key, newUsersPercentage, totalCountPercentage });
-    });
-  }
+  // calculateDailyStatistics() {
+  //   const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  //   const dailyStatisticsMap = new Map<string, { newUsersCount: number, totalCount: number }>();
+  
+  //   // Initialize dailyStatisticsMap with 0 counts for each day
+  //   daysOfWeek.forEach(day => {
+  //     dailyStatisticsMap.set(day, { newUsersCount: 0, totalCount: 0 });
+  //   });
+  
+  //   this.users.forEach((user: any) => {
+  //     const registrationDate = new Date(user.registered);
+  //     const dayOfWeek = daysOfWeek[registrationDate.getDay()]; // Getting the day of the week
+  //     const dailyStatistics = dailyStatisticsMap.get(dayOfWeek);
+  //     if (dailyStatistics) {
+  //       dailyStatistics.totalCount += 1; // Incrementing total count for the day
+  //       if (registrationDate >= new Date(new Date().setHours(0, 0, 0, 0))) {
+  //         // Checking if the registration date is today or later
+  //         dailyStatistics.newUsersCount += 1; // Incrementing new users count for the day
+  //       }
+  //     }
+  //   });
+  
+  //   const totalUsers = this.users.length; // Total number of users
+  
+  //   dailyStatisticsMap.forEach((value, key) => {
+  //     const { newUsersCount, totalCount } = value;
+  //     const newUsersPercentage = (newUsersCount / totalUsers) * 100; // Calculating percentage of new users
+  //     const totalCountPercentage = (totalCount / totalUsers) * 100; // Calculating percentage of total count
+  //     this.dailyStatistics.push({ date: key, newUsersPercentage, totalCountPercentage });
+  //   });
+  // }
+  
+  
 }

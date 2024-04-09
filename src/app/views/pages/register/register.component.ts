@@ -33,12 +33,16 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit(): void { }
+
   next(form: NgForm) {
     if (form.valid) {
-      this.container.nativeElement.style.left = '-1%';
-      this.errorbool = false;
+     
+        this.container.nativeElement.style.left = '-1%';
+        this.errorbool = false;
+      
     } else {
       this.errorbool = true;
+      this.errMessage = "Please fill in all the required fields.";
     }
   }
   /*---------------Sign Up----------------- */

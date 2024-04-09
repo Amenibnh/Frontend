@@ -56,8 +56,9 @@
                 <option value="hearing">Hearing</option>
                 <option value="cognitive">Cognitive</option>
               </select>
+              <div *ngIf="errorbool" class="text-danger">{{errMessage}}</div>
               <div class="btn-group">
-                <label for="one" class="btn btn-f" [class.disabled]="!form1.valid || firstname.trim() === '' || lastname.trim() === ''" >Next</label>
+                <label for="one" class="btn btn-f" [class.disabled]="!form1.valid || firstname.trim() === ''" (click)="next(form1)">Next</label>
               </div>
           </form>
       </div>
