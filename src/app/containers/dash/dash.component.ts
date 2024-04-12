@@ -41,6 +41,7 @@ export class DashComponent implements OnInit {
             this.navData=[
               { label: 'Profile', url: '/Profile/profile', icon: 'fa-solid fa-user-check icon' },
             ];
+            this.pageTitle='Profile';
           }
           this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {

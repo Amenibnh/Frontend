@@ -35,6 +35,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void { }
 
   next(form: NgForm) {
+    Object.values(form.controls).forEach(control =>{
+      control.markAllAsTouched();
+    });
     if (form.valid) {
      
         this.container.nativeElement.style.left = '-1%';
@@ -45,6 +48,8 @@ export class RegisterComponent implements OnInit {
       this.errMessage = "Please fill in all the required fields.";
     }
   }
+
+  
   /*---------------Sign Up----------------- */
 
   register() {

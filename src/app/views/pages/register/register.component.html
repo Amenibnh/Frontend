@@ -58,7 +58,7 @@
               </select>
               <div *ngIf="errorbool" class="text-danger">{{errMessage}}</div>
               <div class="btn-group">
-                <label for="one" class="btn btn-f" [class.disabled]="!form1.valid || firstname.trim() === ''" (click)="next(form1)">Next</label>
+                <label for="one" class="btn btn-f" [class.disabled]="!form1.valid" (click)="next(form1)">Next</label>
               </div>
           </form>
       </div>
@@ -74,6 +74,8 @@
                   <input [(ngModel)]="phone" name="phone" type="text" required>
                   <label>Phone Number</label>
               </div>
+              <div *ngIf="errorbool" class="text-danger">{{errMessage}}</div>
+
               <div class="btn-group">
                   <label for="one" class="btn">Previous</label>
                   <label for="two" class="btn" [class.disabled]="!form2.valid || email.trim() === '' || phone.trim() === ''">Next</label>
@@ -293,7 +295,8 @@
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
-              
+                <div *ngIf="errorbool" class="text-danger">{{errMessage}}</div>
+
               <div class="btn-group">
                   <label for="two" class="btn">Previous</label>
                   <label for="three" class="btn" [class.disabled]="!form3.valid || country.trim() === '' || address.trim() === ''|| gender.trim() === ''">Next</label>
@@ -312,7 +315,8 @@
                   <input [(ngModel)]="repeatpassword" name="repeatpassword" type="password" required>
                   <label>repeatpassword</label>
               </div>
-              
+              <div *ngIf="errorbool" class="text-danger">{{errMessage}}</div>
+
               <div class="btn-group">
                   <label for="three" class="btn">Previous</label>
                   <button type="submit" class="btn" (click)="register()" [class.disabled]="!form4.valid || password.trim() === '' || repeatpassword.trim() === ''">Submit</button>
