@@ -87,6 +87,10 @@ export class DashboardComponent implements OnInit {
   // Calculer la différence de mois entre les dates
   const diffMonths = (currentDate.getFullYear() - activityDate.getFullYear()) * 12 + (currentDate.getMonth() - activityDate.getMonth());
   
+  if (isNaN(diffMonths)){
+    return 'Connection not established';
+  }
+
   if (diffMonths === 0) {
       const diffMilliseconds = currentDate.getTime() - activityDate.getTime();
       const diffSeconds = Math.floor(diffMilliseconds / 1000);
@@ -115,6 +119,8 @@ export class DashboardComponent implements OnInit {
       return 'Last month';
   } else if (diffMonths < 12) {
       return `${diffMonths} months ago`;
+  }else if(diffMonths>=12 && diffMonths<24){
+       return 'Last year';
   } else {
       return 'more than a year ago';
   }
