@@ -10,21 +10,8 @@ export class HomeComponent implements OnInit{
 ngOnInit(): void {
     
 }
-  // ngOnInit(): void {
-    
-  //   const icon = document.getElementById("icon") as HTMLImageElement;
-  //   if (icon) {
-  //     icon.onclick = function () {
-  //       document.body.classList.toggle("dark-theme");
-  //       document.body.classList.toggle("light-theme");
-  //       if (document.body.classList.contains("dark-theme")) {
-  //         icon.src = "../assets/img/sun.png";
-  //       } else {
-  //         icon.src = "../assets/img/moon.png"; 
-  //       }
-  //     }
-  //   }
-  // }
+  // ngOnInit(){}
+
   
   opentab(tabname: string, event?: Event) {
     const tablinks = document.getElementsByClassName("tab-links");

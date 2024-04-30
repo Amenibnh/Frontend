@@ -172,11 +172,12 @@
                     <a href="../assets/images/my-cv.pdf" download class="btn btn2">Download CV</a>
                 </div>
                 <div class="contact-right">
-                  <form>
+                  <form id="myForm">
                     <input type="text" name="Name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                    <button type="submit" class="btn btn2">Submit</button>
+                    <input type="text" name="phone" placeholder="Your Phone" required>
+                    <textarea name="Message" rows="6" placeholder="How can we help you?"></textarea>
+                    <button type="submit" class="btn btn2">Send</button>
                   </form>
                   <span id="msg">Form submitted successfully!</span>
                 </div>
@@ -186,7 +187,29 @@
             <p>© 2024 CareLoveAssist. All rights reserved. Designed with <i class="fa-solid fa-heart"></i> by Ameni.</p>
         </div>        
     </div>
-    
+
+    <!-- <script>
+      document.getElementById("myForm").addEventListener("submit", function(event) {
+          event.preventDefault();
+          var formData = new FormData(this);
+          
+          fetch("/submit-form", {
+              method: "POST",
+              body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+              console.log(data);
+              document.getElementById("msg").innerText = data.msg;
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              document.getElementById("msg").innerText = "An error occurred!";
+          });
+      });
+  </script> -->
+
+
     <!-- <script>
         const scriptURL = '1Vra_h0-8LoiNlAsu4Yg5MYhgbQ494GVsrAxH0a28BROw8mhOyj6VNDPX'
         const form = document.forms['submit-to-google-sheet']
@@ -199,18 +222,7 @@
         })
       </script> -->
       
-<!-- <script>
-    var icon = document.getElementById("icon");
 
-    icon.onclick = function(){
-        document.body.classList.toggle("dark-theme")
-        if(document.body.classList.contains("dark-theme")){
-            icon.src="../assets/img/sun.png"
-        }else{
-            icon.src="../assets/img/moon.png"
-        }
-    }
-</script> -->
 </body>
 
 </html>
