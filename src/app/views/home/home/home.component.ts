@@ -7,11 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit{
   activeTab: string = 'tracking'; // Initialise avec 'tracking'
-ngOnInit(): void {
-    
-}
-  // ngOnInit(){}
+// ngOnInit(): void {
+//   var form=document.querySelector(".contact-right form") as HTMLFormElement | null;
+//   var message=document.getElementById("msg");
+//   var submitButton=form?.querySelector(".btn.btn2");
 
+//   submitButton?.addEventListener("click",function(event){
+//     event.preventDefault();
+//     if(form && message){
+//       if(validateForm(form)){
+//         message.style.display="block";
+//         form.reset();
+//       }else{
+//         alert("Please fill in all fields before submitting.")
+//       }
+      
+//     }
+    
+//   })
+// }
+  ngOnInit(){}
+  
   
   opentab(tabname: string, event?: Event) {
     const tablinks = document.getElementsByClassName("tab-links");
@@ -51,3 +67,12 @@ ngOnInit(): void {
   }
 
 }
+// function validateForm(form: HTMLFormElement): boolean {
+//   var inputs = form.querySelectorAll("input, textarea");
+//   for (var i = 0; i < inputs.length; i++) {
+//     if ((inputs[i] as HTMLInputElement).value.trim() === "") {
+//       return false;
+//     }
+//   }
+//   return true;
+// }

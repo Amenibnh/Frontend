@@ -22,6 +22,7 @@
                     <li> <a href="#/ameni#services">Services</a></li>
                     <li> <a href="#/ameni#portfolio">Portfolio</a></li>
                     <li> <a href="#/ameni#contact">Contact</a></li>
+                    <li> <a href="https://formsubmit.co/el/xirufu">Help</a></li>
                     <li> <a href="#/login">Login</a></li>
                     <i class="fas fa-xmark" (click)="closemenu()"></i>
                 </ul>
@@ -171,58 +172,24 @@
                     </div>
                     <a href="../assets/images/my-cv.pdf" download class="btn btn2">Download CV</a>
                 </div>
-                <div class="contact-right">
-                  <form id="myForm">
+                <!-- <div class="contact-right">
+                  <form action="https://formsubmit.co/ba2687aa9ba98c2522d205e04ac18455" method="post" >
                     <input type="text" name="Name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
                     <input type="text" name="phone" placeholder="Your Phone" required>
-                    <textarea name="Message" rows="6" placeholder="How can we help you?"></textarea>
+                    <textarea name="Message" rows="6" placeholder="How can we help you?" required></textarea>
                     <button type="submit" class="btn btn2">Send</button>
                   </form>
-                  <span id="msg">Form submitted successfully!</span>
-                </div>
+                  <span id="msg" style="display:none;">Form submitted successfully!</span>
+                </div> -->
+               
+
             </div>
         </div>
         <div class="copyright">
             <p>© 2024 CareLoveAssist. All rights reserved. Designed with <i class="fa-solid fa-heart"></i> by Ameni.</p>
         </div>        
     </div>
-
-    <!-- <script>
-      document.getElementById("myForm").addEventListener("submit", function(event) {
-          event.preventDefault();
-          var formData = new FormData(this);
-          
-          fetch("/submit-form", {
-              method: "POST",
-              body: formData
-          })
-          .then(response => response.json())
-          .then(data => {
-              console.log(data);
-              document.getElementById("msg").innerText = data.msg;
-          })
-          .catch(error => {
-              console.error('Error:', error);
-              document.getElementById("msg").innerText = "An error occurred!";
-          });
-      });
-  </script> -->
-
-
-    <!-- <script>
-        const scriptURL = '1Vra_h0-8LoiNlAsu4Yg5MYhgbQ494GVsrAxH0a28BROw8mhOyj6VNDPX'
-        const form = document.forms['submit-to-google-sheet']
-      
-        form.addEventListener('submit', e => {
-          e.preventDefault()
-          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => console.log('Success!', response))
-            .catch(error => console.error('Error!', error.message))
-        })
-      </script> -->
-      
-
 </body>
 
 </html>
