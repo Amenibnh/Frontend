@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Dashboard</title>
     <link rel="stylesheet" type="text/css" href="admin-global.component.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
   <body>
@@ -43,60 +44,25 @@
           </tbody>
         </table>
       </section>
-      <div class="progress-bars">
-      <div class="skill">
-  <div class="outer">
-    <div class="inner">
-      <div id="number">total:{{ counter }}%</div>
-    </div>
-  </div>
-
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    version="1.1"
-    width="160px"
-    height="160px"
-  >
-    <defs>
-      <linearGradient id="GradientColor">
-        <stop offset="0%" stop-color="#e91e63" />
-        <stop offset="100%" stop-color="#673ab7" />
-      </linearGradient>
-    </defs>
-    <circle cx="80" cy="80" r="70" stroke-linecap="round" />
-  </svg>
-</div>
-      <div class="skill">
-  <div class="outer">
-    <div class="inner">
-      <div id="number">total:{{ counter }}%</div>
-    </div>
-  </div>
-
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    version="1.1"
-    width="160px"
-    height="160px"
-  >
-    <defs>
-      <linearGradient id="GradientColor">
-        <stop offset="0%" stop-color="#e91e63" />
-        <stop offset="100%" stop-color="#673ab7" />
-      </linearGradient>
-    </defs>
-    <circle cx="80" cy="80" r="70" stroke-linecap="round" />
-  </svg>
-</div>
-
-
-</div>
-
 
       <ng-template #loadingassociations>
         <p>Loading ...</p>
       </ng-template>
     </main>
+
+    <main class="table" id="customers_table">
+      <section>
+        <canvas id="genderChart" class="chart-canvas" width="300" height="300"></canvas>
+      <canvas id="countryChart" class="chart-canvas" width="300" height="300"></canvas>
+      
+      </section>
+    </main>
+
+
+
+
+
+
     <main class="table" id="customers_table">
       <section class="table__header">
         <h1>Statistiques d'Associations</h1>
@@ -176,6 +142,7 @@
         <p>Loading ...</p>
       </ng-template>
     </main>
+
   </body>
 </html>
 
@@ -197,3 +164,51 @@
 
 
 
+  <!-- <div class="progress-bars">
+      <div class="skill">
+  <div class="outer">
+    <div class="inner">
+      <div id="number">total Admin:{{ totalAdmins }}</div>
+    </div>
+  </div>
+
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    width="160px"
+    height="160px"
+  >
+    <defs>
+      <linearGradient id="GradientColor">
+        <stop offset="0%" stop-color="#e91e63" />
+        <stop offset="100%" stop-color="#673ab7" />
+      </linearGradient>
+    </defs>
+    <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+  </svg>
+</div>
+      <div class="skill">
+  <div class="outer">
+    <div class="inner">
+      <div id="number">  totalResp:{{ totalResponsables }}</div>
+    </div>
+  </div>
+
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    width="160px"
+    height="160px"
+  >
+    <defs>
+      <linearGradient id="GradientColor">
+        <stop offset="0%" stop-color="#e91e63" />
+        <stop offset="100%" stop-color="#673ab7" />
+      </linearGradient>
+    </defs>
+    <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+  </svg>
+</div>
+
+
+</div> -->

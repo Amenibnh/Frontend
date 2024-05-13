@@ -45,7 +45,6 @@ import { RouterModule } from '@angular/router';
 // Import containers DashComponent
 import{DashComponent}from'./containers/dash/dash.component'
 const APP_CONTAINERS = [DashComponent];
-
 @NgModule({
   declarations: [AppComponent, ...APP_CONTAINERS],
   imports: [
@@ -81,6 +80,7 @@ const APP_CONTAINERS = [DashComponent];
     QRCodeModule,
     FontAwesomeModule,
     RouterModule,
+    
   ],
   providers: [
     {

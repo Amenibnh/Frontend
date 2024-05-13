@@ -1,51 +1,57 @@
-.progress-bar{
+/* .progress-bar-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* .progress-bar{
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
   align-items: center;
-}
+} */
 /* ----position de cercle----- */
-.skill {
+/* .skill {
   height: 160px;
-  width: 160px;
+  width: 160px; */
   /* margin: 0 auto;
   margin-top: 100px;
   margin-left: 100px; */
   /* background: cornflowerblue; */
-  position: relative;
-}
+  /* position: relative;
+} */
 
 /* ---carcle lbaraneya----- */
-.outer {
+/* .outer {
   height: 160px;
   width: 160px;
-  border-radius: 50%;
+  border-radius: 50%; */
 
   /* border: 1px solid red; */
-  padding: 20px;
+  /* padding: 20px;
   box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
     -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
-}
+} */
 /* ----cercle dakhlaneya---- */
-.inner {
+/* .inner {
   height: 120px;
   width: 120px;
   border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   /* border: 1px solid red; */
-  box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+  /* box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
     inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
     -0.5px -0.5px 0px rgba(255, 255, 255, 1),
     0.5px 0.5px 0px rgba(0, 0, 0, 0.15), 0px 12px 10px -10px rgba(0, 0, 0, 0.05);
-}
-#number {
+} */
+/* #number {
   font-weight: 600;
   color: #151414;
-}
+} */
 
-circle {
+/* circle {
   fill: none;
   stroke: url(#GradientColor);
   stroke-width: 20px;
@@ -62,8 +68,11 @@ svg {
 @keyframes anim {
   100% {
     stroke-dashoffset: 165;
-  }
-}
+  } 
+}*/
+
+
+
 /*----------------------*/
 * {
   margin: 0;
@@ -103,7 +112,7 @@ main.table {
   overflow: hidden;
   margin-top: 2rem;
 }
-
+ 
 .table__header {
   width: 100%;
   height: 10%;
@@ -243,6 +252,15 @@ tbody tr.hide td img {
   height: 0;
   transition: .2s ease-in-out .5s;
 }
+
+.chart-canvas {
+  display: block;
+  margin: 1rem auto; /* Ajustez la marge selon vos besoins */
+  border-radius: 10px; /* Pour arrondir les coins */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère pour le contraste */
+}
+
+/*------supprimer button----------*/
 .btn.delete{
   border-radius: 2rem;
   text-align: center;
