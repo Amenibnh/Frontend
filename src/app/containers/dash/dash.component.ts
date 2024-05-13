@@ -12,6 +12,9 @@ export class DashComponent implements OnInit {
   user: any  = '';
   navData=navbarData;
   pageTitle:string='Dashboard';
+  searchTerm:string='';
+  filteredNavData:any[]=[];
+
   constructor(
     private el: ElementRef,
     private route: ActivatedRoute,
@@ -27,16 +30,21 @@ export class DashComponent implements OnInit {
       this.headerService.getLoggedInUser().subscribe(
         (response) => {
           this.user = response.user;
-          // console.log(this.user);
-          // console.log(this.user.profileImage);
-          if(this.user.role==="admin"){
+
+          if(this.user.role==="admin"||this.user.role==="responsable"){
             this.navData = [
               { label: 'Dashboard', url: '/dashboard', icon: 'fa-solid fa-house icon' },
               { label: 'DailyPass', url: '/dailypass/dailypass', icon: 'fa-solid fa-ticket icon' },
-              { label: 'Repa', url: '/repas/repa', icon: 'fa-solid fa-utensils icon' },
-              { label: 'Users', url: '/users/user', icon: 'fa-solid fa-users icon' },
+              { label: 'Patients', url: '/users/user', icon: 'fa-solid fa-users icon' },
               { label: 'Profile', url: '/Profile/profile', icon: 'fa-solid fa-user-check icon' },
             ];
+          }else if(this.user.role==="adminGlobal"){
+            this.navData = [
+              { label: 'Dashboard', url: '/AdminGlobal/adminGlobal', icon: 'fa-solid fa-house icon' },
+              { label: 'Profile', url: '/Profile/profile', icon: 'fa-solid fa-user-check icon' },
+
+            ];
+            
           }else{
             this.navData=[
               { label: 'Profile', url: '/Profile/profile', icon: 'fa-solid fa-user-check icon' },
@@ -60,17 +68,18 @@ export class DashComponent implements OnInit {
     const body = this.el.nativeElement.querySelector("body");
     const sidebar = this.el.nativeElement.querySelector(".sidebar");
     const toggle = this.el.nativeElement.querySelector(".toggle");
-    const searchBtn = this.el.nativeElement.querySelector(".search-box");
     const modeSwtich = this.el.nativeElement.querySelector(".toggle-switch");
     const modeText = this.el.nativeElement.querySelector(".mode-text");
-    // const modeToggle = this.el.nativeElement.querySelector('.mode-toggle');
-    // const sidebar = this.el.nativeElement.querySelector('nav');
-    // const sidebarToggle =this.el.nativeElement.querySelector('.sidebar-toggle');
+    // const searchBtn = this.el.nativeElement.querySelector(".search-box");
 
+    
+    //
     toggle.addEventListener("click", () => {
       sidebar.classList.toggle("close");
     });
 
+
+    //Dark && Light Mode
     modeSwtich.addEventListener("click", () => {
       body.classList.toggle("dark");
       if(body.classList.contains("dark")){
@@ -81,35 +90,30 @@ export class DashComponent implements OnInit {
       }
     });
 
-    // let getMode = localStorage.getItem('mode');
-    // if (getMode && getMode === 'dark') {
-    //   body.classList.toggle('dark');
-    // }
-
-    // let getStatus = localStorage.getItem('status');
-    // if (getStatus && getStatus === 'close') {
-    //   sidebar.classList.toggle('close');
-    // }
-
-    // modeToggle.addEventListener('click', () => {
-    //   body.classList.toggle('dark');
-    //   if (body.classList.contains('dark')) {
-    //     localStorage.setItem('mode', 'dark');
-    //   } else {
-    //     localStorage.setItem('mode', 'light');
-    //   }
-    // });
-
-    // sidebarToggle.addEventListener('click', () => {
-    //   sidebar.classList.toggle('close');
-    //   if (sidebar.classList.contains('close')) {
-    //     localStorage.setItem('status', 'close');
-    //   } else {
-    //     localStorage.setItem('status', 'open');
-    //   }
-    // });
 
   }
+
+/*------------------------searche----------------------------*/
+  filterNavData(): any[] {
+    if (this.searchTerm.trim() === '') {
+      return this.navData;
+    } else {
+      return this.navData.filter(data => data.label.toLowerCase().includes(this.searchTerm.toLowerCase()));
+    }
+  }
+  //recherche par label
+onSearch(): void {
+  if (this.searchTerm.trim() === '') {
+    this.filteredNavData = this.navData;
+  } else {
+    const searchTermLowerCase = this.searchTerm.toLowerCase();
+    this.filteredNavData = this.navData.filter(data => data.label.toLowerCase().startsWith(searchTermLowerCase));
+  }
+}
+/*---------------------------------------------------------*/
+
+  
+  //Log Out
   logoutUser(): void {
     this.headerService.logoutUser().subscribe(
       (response) => {

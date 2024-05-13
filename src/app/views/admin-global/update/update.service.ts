@@ -5,32 +5,33 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardService {
+export class UpdateService {
 
   constructor(private http: HttpClient) { }
   private apiURL = 'http://localhost:3001';
-  getAllUsers(): Observable<any> {
-    const url = `${this.apiURL}/getAllUsers`;
-    const token=localStorage.getItem('token')
+
+  updateAssociation(id: any, data: any): Observable<any> {
+    const url = `${this.apiURL}/updateAssociation/${id}`;
+    const token = localStorage.getItem('token');
     // Define headers
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
-      // Add more headers if needed
     });
-
+    console.log(url);
+    console.log(data); // Check the data being sent
+    
     // Make HTTP request with headers
-    return this.http.get<any>(url, { headers });
+    return this.http.put<any>(url, data, { headers });
   }
 
-  RatioVille(): Observable<any> {
-    const url = `${this.apiURL}/getUserByVille`;
-    const token=localStorage.getItem('token')
+  getAssociationId(id: any): Observable<any> {
+    const url = `${this.apiURL}/getAssociationId/${id}`;
+    const token = localStorage.getItem('token');
     // Define headers
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
-      // Add more headers if needed
     });
 
     // Make HTTP request with headers

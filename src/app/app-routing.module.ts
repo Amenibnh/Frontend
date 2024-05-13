@@ -14,7 +14,7 @@ import { DashComponent } from './containers/dash/dash.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'ameni',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
 
@@ -64,10 +64,18 @@ const routes: Routes = [
         canActivate: [authGuard]
       },
       {
+        path:'AdminGlobal',
+        loadChildren:()=>
+          import('./views/admin-global/admin-global.module').then((m) => m.AdminGlobalModule),
+        canActivate: [authGuard]
+      }
+      ,
+      {
         path:'Home',
         loadChildren: () =>
          import('./views/home/home.module').then((m)=>m.HomeModule)
-      }
+      },
+      
     ]
   },
   {

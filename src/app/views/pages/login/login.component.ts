@@ -59,7 +59,7 @@ if(this.email=="" ){
         // Enregistrement de token de l'utilisateur(local stotage)
         localStorage.setItem('token', token);
         
-        if(Response.role==="admin"){
+        if(Response.role === "admin" || Response.role === "responsable" ){
         // Save user details in local storage
         // localStorage.setItem('user', JSON.stringify(Response.user));
 
@@ -73,6 +73,12 @@ if(this.email=="" ){
         // Use the router to navigate to the dashboard
         this.router.navigate(['/dashboard']);
         
+        }else if(Response.role === "adminGlobal" ){
+
+          this.router.navigate(['/adminGlobal']).then(() => {
+            // Redirection vers le contenu du tableau de bord dans le module AdminGlobalModule
+            this.router.navigate(['/AdminGlobal/adminGlobal']);
+          });
         }else if( Response.role==="user"){
           this.router.navigate(['/Profile/profile']);
 

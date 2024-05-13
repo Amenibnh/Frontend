@@ -98,6 +98,7 @@ export class ProfileuserComponent implements OnInit {
           console.log(this.user);
           this.message = 'success';
           window.location.reload()
+          
         },
         (error) => {
           console.error(error);

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update association</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div *ngIf="errMessage" class="alert alert-danger" role="alert">
+        {{ errMessage }}
+      </div>
+      <h1>Update Your informations</h1>
+      <form (ngSubmit)="updateAssociation($event, association._id)">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            required
+            [(ngModel)]="association.name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="name">description:</label>
+          <input
+            type="text"
+            name="description"
+            class="form-control"
+            required
+            [(ngModel)]="association.description"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Responsable:</label>
+          <input
+            type="email"
+            name="responsableEmail"
+            class="form-control"
+            [(ngModel)]="association.responsable"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Admin:</label>
+          <input
+            type="email"
+            name="adminEmail"
+            class="form-control"
+            [(ngModel)]="association.admin"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="text">country:</label>
+          <input
+            type="text"
+            name="country"
+            class="form-control"
+            required
+            [(ngModel)]="association.country"
+          />
+        </div>
+        <div class="form-group">
+          <label for="text">region:</label>
+          <input
+            type="text"
+            name="region"
+            class="form-control"
+            required
+            [(ngModel)]="association.region"
+          />
+        </div>
+        <div>
+          <label for="text">zip_code:</label>
+          <input
+            type="text"
+            name="zip_code"
+            class="form-control"
+            required
+            [(ngModel)]="association.zip_code"
+          />
+        </div>
+        <br />
+        <div class="button">
+          <button type="submit" class="btn-primary">Update</button>
+          <button
+            type="button"
+            class="btn-secondary"
+            routerLink="/AdminGlobal/adminGlobal"
+          >
+            Back
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

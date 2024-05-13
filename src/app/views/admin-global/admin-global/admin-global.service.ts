@@ -5,12 +5,13 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardService {
-
+export class AdminGlobalService {
   constructor(private http: HttpClient) { }
   private apiURL = 'http://localhost:3001';
-  getAllUsers(): Observable<any> {
-    const url = `${this.apiURL}/getAllUsers`;
+
+
+  getAllAssociation(): Observable<any> {
+    const url = `${this.apiURL}/getAllAssociationsDetails`;
     const token=localStorage.getItem('token')
     // Define headers
     const headers = new HttpHeaders({
@@ -23,8 +24,8 @@ export class DashboardService {
     return this.http.get<any>(url, { headers });
   }
 
-  RatioVille(): Observable<any> {
-    const url = `${this.apiURL}/getUserByVille`;
+  deleteAssociation(id:any): Observable<any> {
+    const url = `${this.apiURL}/deleteAssociation/${id}`;
     const token=localStorage.getItem('token')
     // Define headers
     const headers = new HttpHeaders({
@@ -34,6 +35,7 @@ export class DashboardService {
     });
 
     // Make HTTP request with headers
-    return this.http.get<any>(url, { headers });
+    return this.http.delete<any>(url, { headers });
   }
+
 }

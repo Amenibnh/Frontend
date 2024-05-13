@@ -1,4 +1,4 @@
-
+ 
 import { Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
@@ -17,6 +17,7 @@ import { brandSet, flagSet, freeSet } from '@coreui/icons';
   providedIn: 'root',
 })
 export class DashboardComponent implements OnInit {
+  
   users: any[]= [];
   malePercentage: number = 0;
   femalePercentage: number = 0;
@@ -35,7 +36,7 @@ export class DashboardComponent implements OnInit {
 
   }
   getAllUsers() {
-    console.log(this.dailyStatistics);
+    // console.log(this.dailyStatistics);
     this.userService.getAllUsers().subscribe(
       (response) => {
         this.users = response.users.map((user: any) => {

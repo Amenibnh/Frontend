@@ -19,13 +19,14 @@
 
       <div class="text header-text">
         <span class="name">CareLoveAssist</span>
-        <span class="profession">Dashboard</span>
+        <!-- <span class="profession">Dashboard</span> -->
       </div>
     </div>
     <i class="fa-solid fa-chevron-right toggle"></i>
 
     <div class="user">
-      <img [src]="user?.profileImage ? 'http://127.0.0.1:3001/uploads/' + user.profileImage : ''"  class="user-img">
+      <img [src]="user?.profileImage ? 'http://127.0.0.1:3001/uploads/' + user.profileImage : ''"  class="user-img" >
+      <br>
       <span class="text nav-text">{{user.firstname}} {{user.lastname}}</span>
     </div>
    </header>
@@ -34,11 +35,11 @@
 
       <li class="search-box">
         <i class="fa-solid fa-magnifying-glass icon"></i>
-        <input type="text" placeholder="Search...">
+        <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" (input)="onSearch()">
       </li>
 
       <ul class="menu-links">
-        <li class="nav-links" *ngFor="let data of navData">
+        <li class="nav-links" *ngFor="let data of filterNavData()">
           <a [routerLink]="data.url" routerLinkActive="active">
             <i [class]="data.icon"></i>
             <span class="text nav-text">{{ data.label }}</span>

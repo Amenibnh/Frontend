@@ -15,4 +15,10 @@ export class RegisterService {
     const body = { firstname, lastname, email, address, country, password, repeatpassword ,phone,gender,disabilityType};
     return this.http.post<any>(url, body);
   }
+
+  getAllSites():Observable<any>{
+    const url = `${this.apiURL}/getallsite`;
+    return this.http.get<any>(url);
+  }
+  
 }

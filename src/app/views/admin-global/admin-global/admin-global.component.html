@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="admin-global.component.css" />
+  </head>
+
+  <body>
+    <main class="table" id="customers_table">
+      <section class="table__header">
+        <h1>Ratios Par Ville</h1>
+        <div class="input-group">
+          <input type="search" placeholder="Search Data..." />
+          <img src="../../../../assets/img/avatar/search.png" alt="" />
+        </div>
+      </section>
+      <section
+        class="table__body"
+        *ngIf="
+          associations && associations.length > 0;
+          else loadingassociations
+        "
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>Pays</th>
+              <th>Ratio de Patients</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let country of patientRatioByCountry | keyvalue">
+              <td>{{ country.key }}</td>
+              <td>{{ country.value }}%</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td>{{ counter }}%</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <div class="progress-bars">
+      <div class="skill">
+  <div class="outer">
+    <div class="inner">
+      <div id="number">total:{{ counter }}%</div>
+    </div>
+  </div>
+
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    width="160px"
+    height="160px"
+  >
+    <defs>
+      <linearGradient id="GradientColor">
+        <stop offset="0%" stop-color="#e91e63" />
+        <stop offset="100%" stop-color="#673ab7" />
+      </linearGradient>
+    </defs>
+    <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+  </svg>
+</div>
+      <div class="skill">
+  <div class="outer">
+    <div class="inner">
+      <div id="number">total:{{ counter }}%</div>
+    </div>
+  </div>
+
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    width="160px"
+    height="160px"
+  >
+    <defs>
+      <linearGradient id="GradientColor">
+        <stop offset="0%" stop-color="#e91e63" />
+        <stop offset="100%" stop-color="#673ab7" />
+      </linearGradient>
+    </defs>
+    <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+  </svg>
+</div>
+
+
+</div>
+
+
+      <ng-template #loadingassociations>
+        <p>Loading ...</p>
+      </ng-template>
+    </main>
+    <main class="table" id="customers_table">
+      <section class="table__header">
+        <h1>Statistiques d'Associations</h1>
+        <a [href]="'/#/AdminGlobal/add' ">
+          <button class="btn add">Add</button>
+       </a>
+        <div class="input-group">
+          <input type="search" placeholder="Search Data..." />
+          <img src="../../../../assets/img/avatar/search.png" alt="" />
+        </div>
+        <!-- <div class="export__file">
+        <label for="export-file" class="export__file-btn" title="Export File"></label>
+        <input type="checkbox" id="export-file">
+        <div class="export__file-options">
+            <label>Export As &nbsp; &#10140;</label>
+            <label for="export-file" id="toPDF">PDF <img src="images/pdf.png" alt=""></label>
+            <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""></label>
+            <label for="export-file" id="toCSV">CSV <img src="images/csv.png" alt=""></label>
+            <label for="export-file" id="toEXCEL">EXCEL <img src="images/excel.png" alt=""></label>
+        </div>
+    </div> -->
+      </section>
+      <section
+        class="table__body"
+        *ngIf="
+          associations && associations.length > 0;
+          else loadingassociations
+        "
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nom</th>
+              <th>country</th>
+              <th>Admin</th>
+              <th>Responsable</th>
+              <th>Nombre de Patients</th>
+              <th>Nombre d'Associations</th>
+              <th>Delete</th>
+              <th>Update</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let association of associations; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ association.name }}</td>
+              <td>{{ association.country }}</td>
+              <td>
+                {{ association.admin.firstname }}
+                {{ association.admin.lastname }}
+              </td>
+              <td>
+                {{ association.responsable.firstname }}
+                {{ association.responsable.lastname }}
+              </td>
+              <td>{{ association.patients.length }}</td>
+              <td>{{ associations.length }}</td>
+              <td>
+                <button
+                  (click)="deleteAssociation(association._id)"
+                  class="btn delete">
+                  Supprimer
+                </button>
+              </td>
+              <td>
+                <a [href]="'/#/AdminGlobal/update/' + association?._id ">
+                  <button class="btn update">Update</button>
+              </a>
+              </td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <ng-template #loadingassociations>
+        <p>Loading ...</p>
+      </ng-template>
+    </main>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
