@@ -13,18 +13,15 @@
     <main class="table" id="customers_table">
       <section class="table__header">
         <h1>Ratios Par Ville</h1>
-        <div class="input-group">
-          <input type="search" placeholder="Search Data..." />
-          <img src="../../../../assets/img/avatar/search.png" alt="" />
-        </div>
+        
       </section>
       <section
         class="table__body"
         *ngIf="
           associations && associations.length > 0;
           else loadingassociations
-        "
-      >
+        ">
+        
         <table>
           <thead>
             <tr>
@@ -33,7 +30,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let country of patientRatioByCountry | keyvalue">
+            <tr  *ngFor="let country of patientRatioByCountry | keyvalue">
               <td>{{ country.key }}</td>
               <td>{{ country.value }}%</td>
             </tr>
@@ -70,7 +67,7 @@
           <button class="btn add">Add</button>
        </a>
         <div class="input-group">
-          <input type="search" placeholder="Search Data..." />
+          <input type="search" placeholder="Search Data..." [(ngModel)]="searchCountry" (keyup)="searchByCountry()" />
           <img src="../../../../assets/img/avatar/search.png" alt="" />
         </div>
         <!-- <div class="export__file">

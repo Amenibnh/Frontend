@@ -7,8 +7,10 @@ import { Chart } from 'chart.js';
   styleUrls: ['./admin-global.component.css']
 })
 export class AdminGlobalComponent implements OnInit {
-  constructor(private adminGlobalService: AdminGlobalService) { }
+  searchCountry: string='';
 
+
+  
   associations: any;
   patientRatioByCountry: any;
   counter:number=0;
@@ -21,6 +23,11 @@ export class AdminGlobalComponent implements OnInit {
 
   totalMale:number=0;
   totalFemale:number=0;
+  associationService: any;
+  constructor(private adminGlobalService: AdminGlobalService) { }
+
+
+
   
   ngOnInit(): void {
     this.getAllAssociations();
@@ -254,4 +261,26 @@ calculatePatientRatioByCountry() {
       }
     );
   }
+
+  searchByCountry() {
+    if (this.searchCountry === '') {
+      // Si le champ de recherche est vide, rechargez toutes les associations
+      this.getAllAssociations();
+    } else {
+      // Filtrer les associations par pays en comparant la première lettre
+      this.associations = this.associations.filter((association: any) => 
+        association.country.toLowerCase().startsWith(this.searchCountry.toLowerCase())
+      );
+      
+      // Recalculer les statistiques
+      this.calculatePatientRatioByCountry();
+      this.calculateTotalCounts();
+      this.countGender();
+      this.generateCountryChart();
+    }
+  }
+  
+  
+
+
 }
