@@ -5,34 +5,27 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class GetAllRepaService {
-
+export class UpdateService {
   constructor(private http: HttpClient) { }
   private apiURL = 'http://localhost:3001';
-  getAllRepas(): Observable<any> {
-    const url = `${this.apiURL}/getAllRepas`;
-    const token=localStorage.getItem('token')
-    // Define headers
+  
+  getPatientById(id: any): Observable<any> {
+    const url = `${this.apiURL}/getPatientById/${id}`;
+    const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
-      // Add more headers if needed
     });
-
-    // Make HTTP request with headers
     return this.http.get<any>(url, { headers });
   }
-  deleteRepas(id:any): Observable<any> {
-    const url = `${this.apiURL}/deleteRepas/${id}`;
-    const token=localStorage.getItem('token')
-    // Define headers
+
+  updatePatient(id: any, data: any): Observable<any> {
+    const url = `${this.apiURL}/updatepatient/${id}`;
+    const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
-      // Add more headers if needed
     });
-
-    // Make HTTP request with headers
-    return this.http.delete<any>(url, { headers });
+    return this.http.put<any>(url, data, { headers });
   }
 }

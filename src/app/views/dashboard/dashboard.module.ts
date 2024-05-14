@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'; // Import FormsModule here
 
 import {
   AvatarModule,
@@ -22,6 +22,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { WidgetsModule } from '../widgets/widgets.module';
 import { WidgetsRoutingModule } from '../widgets/widgets-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UpdateComponent } from './update/update.component';
+
 @NgModule({
   imports: [
     DashboardRoutingModule,
@@ -33,6 +35,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     GridModule,
     ProgressModule,
     ReactiveFormsModule,
+    FormsModule, // Add FormsModule here
     ButtonModule,
     FormModule,
     ButtonModule,
@@ -43,6 +46,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     WidgetsModule,
     WidgetsRoutingModule
   ],
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, UpdateComponent],
 })
 export class DashboardModule { }

@@ -1,219 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Users</title>
-    <link rel="stylesheet" type="text/css" href="dashboard.component.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Dashboard Admin</title>
+  <link rel="stylesheet" type="text/css" href="dashboard.component.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
+
   <main class="table" id="customers_table">
-
     <section class="table__header">
-        <h1>Ratios Par Ville </h1>
-        <div class="input-group">
-            <input type="search" placeholder="Search Data...">
-            <img src="../../../../assets/img/avatar/search.png" alt="">
-       </div>
+      <h1>Patients List</h1>
+      
+      <div class="input-group">
+        <input type="search" placeholder="Search Data..."  />
+        <img src="../../../../assets/img/avatar/search.png" alt="" />
+      </div>
+      <!-- <div class="export__file">
+        <label for="export-file" class="export__file-btn" title="Export File"></label>
+        <input type="checkbox" id="export-file">
+        <div class="export__file-options">
+            <label>Export As &nbsp; &#10140;</label>
+            <label for="export-file" id="toPDF">PDF <img src="images/pdf.png" alt=""></label>
+            <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""></label>
+            <label for="export-file" id="toCSV">CSV <img src="images/csv.png" alt=""></label>
+            <label for="export-file" id="toEXCEL">EXCEL <img src="images/excel.png" alt=""></label>
+        </div>
+    </div> -->
     </section>
-    <section class="table__body" *ngIf=" users && users.length > 0; else loadingDailyPass">
-        <table>
-            <thead>
-                
-            </thead>
-            <tbody>
-               
-               
-            </tbody>
-        </table>
+    <section
+      class="table__body"
+      *ngIf="patients && patients.length > 0; else loadingPatients"
+    >
+      <table>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Address</th>          
+            <th>Phone</th>
+            <th>gender</th>
+            <th>Delete</th>
+            <th>Update</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let patient of patients; let i = index">
+            <td>{{ patient.firstname }}</td>
+            <td>{{ patient.lastname }}</td>
+            <td>{{ patient.email }}</td>
+            <td>{{ patient.address }}</td>
+            <td>{{ patient.phone }}</td>
+            <td>{{ patient.gender }}</td>
+            <td>
+              <button
+                (click)="deletepatient(patient._id)"
+                class="btn delete">
+                Supprimer
+              </button>
+            </td>
+            <td>
+              <a [href]="'/#/dashboard/update/' + patient?._id ">
+                <button class="btn update">Update</button>
+            </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </section>
-    <ng-template #loadingDailyPass>
-       <p>Loading dailypass...</p>
-   </ng-template>
-</main>
+    <ng-template #loadingPatients>
+      <p>Loading ...</p>
+    </ng-template>
+  </main>
 
-
-    <main class="table" id="customers_table">
-
-        <section class="table__header">
-            <h1>Users </h1>
-            <div class="input-group">
-                <input type="search" placeholder="Search Data...">
-                <img src="../../../../assets/img/avatar/search.png" alt="">
-           </div>
-        </section>
-        <section class="table__body" *ngIf=" users && users.length > 0; else loadingDailyPass">
-            <table>
-                <thead>
-                    <tr>
-                      <th><i class="fa-regular fa-id-card icon"></i></th>
-                       <th><i class="fa-solid fa-user-group icon"></i></th>
-                        <th>User</th>
-                        <th>Country</th>
-                        <th>Usage </th>
-                        <th>Activity</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                   <tr *ngFor="let user of users; let i = index">
-
-                       <td>{{ i + 1 }}</td>
-
-                       <td>
-                        <div style="position: relative; display: inline-block;">
-                            <img src="http://127.0.0.1:3001/uploads/{{ user.profileImage }}" alt="Profile Image" width="30" height="30">
-                            <svg style="position: absolute; bottom: -2px; right: 4.5px;" width="12" height="12">
-                                <circle [attr.fill]="getStatus(user?.status)" cx="5" cy="5" r="5"></circle>
-                            </svg>
-                        </div>
-                    </td>
-                    
-                       
-                       <td>
-                        <div>{{ user.firstname }}</div>
-                        <div class="small text-medium-emphasis text-nowrap">
-                          <span>
-                            {{user.status}}|Registered: {{ user.registered }}
-                          </span>
-                        </div>
-                      </td>
-                      
-                      <td class="text-center">
-                      
-                        <ng-container *ngIf="user.country === 'Tunis'">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1em" viewBox="0 0 301 201">
-                            <g fill="none">
-                              <path fill="#e70013" d="M.5.5h300v200H.5z" />
-                              <circle cx="150.5" cy="100.5" r="50" fill="#fff" />
-                              <circle cx="150.5" cy="100.5" r="37.5" fill="#e70013" />
-                              <circle cx="160.5" cy="100.5" r="30" fill="#fff" />
-                              <path fill="#e70013" d="m138 100.5l40.703-13.225l-25.156 34.624V79.102l25.156 34.624z" />
-                            </g>
-                          </svg>                        </ng-container>
-                      
-                      </td>
-                    
-                    
-                    
-                           
-                    
-
-                       <td>
-                        <div class="d-flex justify-content-between">
-                          <div class="float-start">
-                            <strong>{{ user.usage }}%</strong>
-                          </div>
-                          <div class="float-end ms-1 text-nowrap">
-                            <small class="text-medium-emphasis">
-                              {{ user.period }}
-                            </small>
-                          </div>
-                        </div>
-                        <c-progress class="custom-progress">
-                          <c-progress-bar [value]="user.usage" [ngClass]="getProgressBarColor(user.usage)" class="custom-progress-bar"></c-progress-bar>
-                        </c-progress>
-        
-                      </td>
-        
-
-
-
-                       <td>
-                        <div class="small text-medium-emphasis">Last login</div>
-                        <div class="fw-semibold text-nowrap">{{ user.activity }}</div>
-                      </td>
-                   </tr>
-                   
-                </tbody>
-            </table>
-        </section>
-        <ng-template #loadingDailyPass>
-           <p>Loading dailypass...</p>
-       </ng-template>
-    </main> 
-    
-    <main class="table">
-         <c-card>
-            <c-card-header>Clients</c-card-header>
-            <c-card-body>
-              <c-row>
-                <c-col>
-                    <div style="display: flex;">
-                        <div style="width: 48%;">
-                            <div class="border-start border-start-info">
-                                <div style="margin-left: 10px;">New Clients</div>
-                                <div style="margin-left: 10px;">{{ newUsersCount }}</div>
-                            </div>
-                        </div>
-                        <div style="width: 48%;">
-                            <div class="border-start ">
-                                <div style="margin-left: 10px;">Recurring Clients</div>
-                                <div style="margin-left: 10px;">{{ RecurringUserCount }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-      
-                  <hr/>
-      
-                  <div *ngIf="dailyStatistics.length > 0">
-                    <div class="progress-group mb-4" *ngFor="let stat of dailyStatistics">
-                      <div class="progress-group-prepend">
-                        <span class="text-medium-emphasis small">{{ stat.date }}</span>
-                      </div>
-                      <div class="progress-group-bars">
-                        <c-progress class="custom-progress">
-                          <c-progress-bar color="info" [value]="stat.newUsersPercentage"  class="custom-progress-bar"></c-progress-bar>
-                        </c-progress>
-                       
-                        <c-progress class="custom-progress">
-                          <c-progress-bar color="danger" [value]="stat.totalCountPercentage"  class="custom-progress-bar"></c-progress-bar>
-                        </c-progress>
-                      </div>
-                    </div>
-                  </div>
-      
-                  <hr/>
-      
-                  <div class="progress-group mb-4">
-                    <div class="progress-group-header">
-                      <img src="../../../../assets/male-women/business-man.png" width="25" heigth="25">
-                      <span>Male</span>
-                      <span class="ms-auto font-semibold">{{ malePercentage.toFixed() }}%</span>
-                    </div>
-                    <div>
-                      <c-progress class="custom-progress">
-                        <c-progress-bar color="warning" [value]="malePercentage"  class="custom-progress-bar"></c-progress-bar>
-                      </c-progress>
-                    </div>
-                  </div>
-                  <div class="progress-group mb-5">
-                    <div class="progress-group-header">
-                        <img src="../../../../assets/male-women/businesswoman.png" width="25" heigth="25" >
-                        <span>Female</span>
-                      <span class="ms-auto font-semibold">{{ femalePercentage.toFixed() }}%</span>
-                    </div>
-                    <div>
-                      <c-progress class="custom-progress">
-                        <c-progress-bar color="warning" [value]="femalePercentage"  class="custom-progress-bar"></c-progress-bar>
-                      </c-progress>
-                    </div>
-                  </div>
-      
-                </c-col>
-              </c-row>
-            </c-card-body>
-          </c-card>
-    </main>
- 
-
-   
-    
-    
 </body>
-
 </html>

@@ -31,19 +31,19 @@ export class DashComponent implements OnInit {
         (response) => {
           this.user = response.user;
 
-          if(this.user.role==="admin"||this.user.role==="responsable"){
+          if(this.user.role==="admin"||this.user.role==="responsable"  ){
             this.navData = [
               { label: 'Dashboard', url: '/dashboard', icon: 'fa-solid fa-house icon' },
               { label: 'DailyPass', url: '/dailypass/dailypass', icon: 'fa-solid fa-ticket icon' },
-              { label: 'Patients', url: '/users/user', icon: 'fa-solid fa-users icon' },
               { label: 'Profile', url: '/Profile/profile', icon: 'fa-solid fa-user-check icon' },
             ];
           }else if(this.user.role==="adminGlobal"){
             this.navData = [
-              { label: 'Dashboard', url: '/AdminGlobal/adminGlobal', icon: 'fa-solid fa-house icon' },
+              { label: 'Statistic', url: '/AdminGlobal/adminGlobal', icon: 'fa-solid fa-chart-pie icon' },
               { label: 'Profile', url: '/Profile/profile', icon: 'fa-solid fa-user-check icon' },
 
             ];
+            this.pageTitle='Statistic';
             
           }else{
             this.navData=[
