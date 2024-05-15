@@ -11,7 +11,7 @@ export class GetAllDailypassComponent implements OnInit {
   dailypass: any;
   userId: string = "";
   patientsWithoutPass: any[] = [];
-
+  patientsWithPass: any[] = [];
   constructor(private route: ActivatedRoute, private dailypassService: GetAllDailypassService) { }
 
   ngOnInit(): void {
@@ -24,17 +24,41 @@ export class GetAllDailypassComponent implements OnInit {
             (dailypass) => {
               this.dailypass = dailypass;
               console.log('Détails de l\'association :', this.dailypass);
-
+  
               // Extract patients from association details
               const allPatients = this.dailypass.patients;
               console.log('Liste des patients :', allPatients);
-
-              // Filter patients without daily pass
-              this.patientsWithoutPass = allPatients.filter((patient: any) => !patient.dailyPass);
+  
+              // Get daily passes for each patient
+              allPatients.forEach((patient: any) => {
+                this.dailypassService.getPatientDailyPass(patient._id).subscribe(
+                  (dailyPasses) => {
+                    // Check if the patient has daily passes
+                    if (dailyPasses.dailypass.length === 0) {
+                      // If the patient has no daily passes, add them to the list of patients without passes
+                      this.patientsWithoutPass.push(patient);
+                    }
+                  },
+                  (error) => {
+                    console.error('Erreur lors de la récupération des laissez-passer quotidiens du patient :', error);
+                  }
+                );
+              });
               console.log('Liste des patients sans dailypass:', this.patientsWithoutPass);
+          
+              this.dailypassService.getAllAssociationDailyPass(this.dailypass._id).subscribe(
+                (response) => {
+                  this.patientsWithPass = response.dailypass; 
+                  console.log('Liste des patients avec dailypass:', this.patientsWithPass);
+                },
+                (error) => {
+                  console.error('Erreur lors de la récupération des détails de l\'association :', error);
+                }
+              );
+              
             },
             (error) => {
-              console.error('Erreur lors de la récupération des détails de l\'association :', error);
+              console.error('Erreur lors de la récupération de l\'ID de l\'utilisateur :', error);
             }
           );
         },
@@ -44,11 +68,16 @@ export class GetAllDailypassComponent implements OnInit {
       );
     });
   }
+  
+
+
+
+
+  
   addDailyPass(associationId: string, email: string) {
     this.dailypassService.addPatientPass(associationId, email).subscribe(
       (response) => {
         console.log('Laissez-passer quotidien ajouté avec succès.');
-        // Vous pouvez ajouter du code pour gérer la réponse ici si nécessaire
       },
       (error) => {
         console.error('Erreur lors de l\'ajout du laissez-passer quotidien :', error);
@@ -59,9 +88,14 @@ export class GetAllDailypassComponent implements OnInit {
 
 
   // Supprimer le laissez-passer du patient
-  deletePatientPass(associationId: string, email: string) {
+  deletePatientPass(patientId: string, email: string) {
+    // Récupérer l'ID de l'association à partir des détails de l'association
+    const associationId = this.dailypass._id;
+  
+    // Appeler la méthode de service pour supprimer le laissez-passer du patient
     this.dailypassService.deletePatientPass(associationId, email).subscribe(
       () => {
+        // Recharger la page après avoir supprimé le laissez-passer du patient
         window.location.reload();
       },
       (error) => {

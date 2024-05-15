@@ -13,23 +13,12 @@
 
   <main class="table" id="customers_table">
     <section class="table__header">
-      <h1>Patients List</h1>
+      <h1>Manipulation Patient</h1>
       
       <div class="input-group">
         <input type="search" placeholder="Search Data..."  />
         <img src="../../../../assets/img/avatar/search.png" alt="" />
       </div>
-      <!-- <div class="export__file">
-        <label for="export-file" class="export__file-btn" title="Export File"></label>
-        <input type="checkbox" id="export-file">
-        <div class="export__file-options">
-            <label>Export As &nbsp; &#10140;</label>
-            <label for="export-file" id="toPDF">PDF <img src="images/pdf.png" alt=""></label>
-            <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""></label>
-            <label for="export-file" id="toCSV">CSV <img src="images/csv.png" alt=""></label>
-            <label for="export-file" id="toEXCEL">EXCEL <img src="images/excel.png" alt=""></label>
-        </div>
-    </div> -->
     </section>
     <section
       class="table__body"
@@ -79,5 +68,94 @@
     </ng-template>
   </main>
 
+  <main class="table" id="dailypass_table">
+    <section class="table__header">
+      <h1>Association Daily Passes</h1>
+    </section>
+    <section class="table__body" *ngIf="associationDailyPasses && associationDailyPasses.length > 0; else noassociationDailyPasses">
+      <table>
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Pass</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dailyPass of associationDailyPasses">
+            <td>{{ dailyPass.patient_id.email }}</td>
+            <td>{{ dailyPass.pass }}</td>
+            <td>
+              <form (submit)="updatePatientPass(dailyPass.patient_id._id, newPass)">
+                <div class="input-container">
+                  <input type="number" [(ngModel)]="newPass" min="0" max="3" name="newPass" required>
+                <button type="submit" class="btn update">Update Pass</button>
+                </div>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <ng-template #noassociationDailyPasses>
+      <p>No association daily passes found.</p>
+    </ng-template>
+  </main>
+
+  
+  <main class="table" id="repa_table">
+    <section class="table__header">
+      <h1>Details des repas</h1>
+      <div class="export__file">
+        <label for="export-file" class="export__file-btn" title="Export File"></label>
+        <input type="checkbox" id="export-file">
+        <div class="export__file-options">
+            <label>Export As &nbsp; &#10140;</label>
+            <label for="export-file" id="toPDF" >PDF <img src="../../../../assets/img/avatar/pdf.png" alt=""></label>
+            <!-- <label for="export-file" id="toJSON">JSON <img src="../../../../assets/img/avatar/json.png" alt=""></label>
+            <label for="export-file" id="toCSV">CSV <img src="../../../../assets/img/avatar/csv.png" alt=""></label>
+            <label for="export-file" id="toEXCEL">EXCEL <img src="../../../../assets/img/avatar/excel.png" alt=""></label> -->
+        </div>
+    </div>
+    </section>
+    <section class="table__body" *ngIf="associationRepaDetails && associationRepaDetails.length > 0; else noassociationRepaDetails">
+      <table>
+        <thead>
+          <tr>
+            <th>Patient</th>
+            <th>Mois</th>
+            <th>Repas Reçus (Mois)</th>
+            <th>Total Repas Reçus</th>
+            <th>Total Patients</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let detail of associationRepaDetails">
+            <tr>
+              <td>{{ detail.email }}</td>
+              <td>
+                <div *ngFor="let repa of detail.monthlyRepas">
+                  {{ repa.month }}
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let repa of detail.monthlyRepas">
+                  {{ repa.totalRepaRecu }}
+                </div>
+              </td>
+              <td>{{ detail.totalRepaRecu }}</td>
+              <td>{{ totalPatients }}
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </section>
+    <ng-template #noassociationRepaDetails>
+      <p>No association daily passes found.</p>
+    </ng-template>
+</main>
+
+  
+  
 </body>
 </html>

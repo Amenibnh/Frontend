@@ -46,8 +46,11 @@ export class GetAllDailypassService {
       'Content-Type': 'application/json'
     });
   
+    // Envoyer les deux paramètres dans le corps de la requête DELETE
     return this.http.delete<any>(url, { headers, body: { email } });
   }
+  
+  
   
 
 
@@ -76,6 +79,16 @@ export class GetAllDailypassService {
     });
     
     // Make HTTP request with headers
+    return this.http.get<any>(url, { headers });
+  }
+
+  getAllAssociationDailyPass(associationId: string): Observable<any> {
+    const url = `${this.apiURL}/getAllAssociationDailyPass/${associationId}`;
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
     return this.http.get<any>(url, { headers });
   }
 

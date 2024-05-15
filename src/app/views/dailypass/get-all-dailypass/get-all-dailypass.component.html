@@ -1,55 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Dashboard Admin</title>
-  <link rel="stylesheet" type="text/css" href="get-all-dailypass.component.css" />
+  <link rel="stylesheet" type="text/css" href="get-all-dailypass.component.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
 
-  <main class="table" id="customers_table">
-    <section class="table__header">
-      <h1>Patients List</h1>
-    </section>
-    <section
-      class="table__body"
-      *ngIf="patientsWithoutPass && patientsWithoutPass.length > 0; else noPatientsWithoutPass"
-    >
-      <table>
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Add</th>
-            <th>Remove</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let patient of patientsWithoutPass; let i = index">
-            <td>{{ patient.email }}</td>
-            <td>
-              <button class="btn add" (click)="addDailyPass(dailypass._id, patient.email)">Add Daily Pass</button>
-            </td>
-            <td>
-              <button
-              (click)="deletePatientPass(dailypass._id, patient.email)"
-              class="btn delete">
-                Supprimer
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-    <ng-template #noPatientsWithoutPass>
-      <p>No patients without daily pass found.</p>
-    </ng-template>
-  </main>
-  
-  
+<main class="table" id="customers_table">
+  <section class="table__header">
+    <h1>Patients List</h1>
+  </section>
+  <section class="table__body" *ngIf="patientsWithoutPass && patientsWithoutPass.length > 0; else noPatientsWithoutPass">
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Email</th>
+          <th>Add</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let patient of patientsWithoutPass; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ patient.email }}</td>
+          <td>
+            <button class="btn add" (click)="addDailyPass(dailypass._id, patient.email)">Add Daily Pass</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <ng-template #noPatientsWithoutPass>
+    <p>No patients without daily pass found.</p>
+  </ng-template>
+</main>
+
+<main class="table" id="dailypass_table">
+  <section class="table__header">
+    <h1>Association Daily Passes</h1>
+  </section>
+  <section class="table__body" *ngIf="patientsWithPass && patientsWithPass.length > 0; else noPatientsWithPass">
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Pass</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dailyPass of patientsWithPass;">
+          <td>{{ dailyPass.patient_id.email }}</td>
+          <td>{{ dailyPass.pass }}</td>
+          <td>
+            <button (click)="deletePatientPass(dailyPass.association_id, dailyPass.patient_id.email)" class="btn delete">
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <ng-template #noPatientsWithPass>
+    <p>No patients with daily pass found.</p>
+  </ng-template>
+</main>
 
 </body>
 </html>

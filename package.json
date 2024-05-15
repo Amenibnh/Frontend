@@ -36,6 +36,8 @@
     "css": "^3.0.0",
     "flag-icon-css": "^4.1.7",
     "jquery": "^3.7.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
     "lodash-es": "^4.17.21",
     "ng2-charts": "^6.0.1",
     "ngx-scrollbar": "^13.0.3",
