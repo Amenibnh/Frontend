@@ -59,7 +59,7 @@ if(this.email=="" ){
         // Enregistrement de token de l'utilisateur(local stotage)
         localStorage.setItem('token', token);
         
-        if(Response.role === "admin" || Response.role === "responsable"||Response.role==="adminGlobal" ){
+        if(Response.role === "admin" || Response.role === "responsable"){
         // Save user details in local storage
         // localStorage.setItem('user', JSON.stringify(Response.user));
 

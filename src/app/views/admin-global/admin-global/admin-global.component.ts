@@ -32,12 +32,10 @@ export class AdminGlobalComponent implements OnInit {
   ngOnInit(): void {
     this.getAllAssociations();
     this.startCounter();
-    this.calculateTotalCounts();
   }
 
 //
   startCounter() {
-
     // Interval to update counter every 30ms
     this.intervalId = setInterval(() => {
         if (this.counter === this.totalRatio) {
@@ -244,6 +242,7 @@ calculatePatientRatioByCountry() {
         this.calculateTotalCounts();
         this.countGender();
         this.generateCountryChart();
+        this.calculateTotalCounts();
       },
       (error) => {
         console.error(error);

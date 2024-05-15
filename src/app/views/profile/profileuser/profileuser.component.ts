@@ -52,8 +52,8 @@ export class ProfileuserComponent implements OnInit {
   }
   generateQrCode() {
     if (this.user) {
-      const uniqueIdentifier = this.user.id;
-      const qrCodeData = `${this.user.email},${this.user.firstname},${this.user.phone},${uniqueIdentifier}`;
+
+      const qrCodeData = `${this.user.qrdata}`;
       if (qrCodeData.trim() !== '') {
         this.myAngularxQrCode = qrCodeData;
       }
