@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   associationRepaDetails: any[] = [];
   totalPatients: number = 0; 
   pdf_btn: HTMLElement | null = null;
+  searchEmail: string='';
 
 
   constructor(private route: ActivatedRoute, private dashboardService: DashboardService) { }
@@ -172,6 +173,35 @@ toPDF() {
     new_window.print();
     new_window.close();
   }, 400);
+}
+
+
+searchByEmail() {
+  if (this.searchEmail === '') {
+    // Si le champ de recherche est vide, réinitialiser la liste des patients à partir des détails de l'association
+    this.dashboardService.getAdminAssociationDetails(this.userId).subscribe(
+      (associationDetails) => {
+        this.associationDetails = associationDetails;
+        this.patients = this.associationDetails.patients;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des détails de l\'association :', error);
+      }
+    );
+  } else {
+    // Filtrer les patients par pays en comparant la première lettre
+    this.dashboardService.getAdminAssociationDetails(this.userId).subscribe(
+      (associationDetails) => {
+        this.associationDetails = associationDetails;
+        this.patients = this.associationDetails.patients.filter((patient: any) =>
+          patient.email.toLowerCase().startsWith(this.searchEmail.toLowerCase())
+        );
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des détails de l\'association :', error);
+      }
+    );
+  }
 }
 
 

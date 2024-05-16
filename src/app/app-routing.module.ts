@@ -61,6 +61,13 @@ const routes: Routes = [
         loadChildren:()=>
           import('./views/admin-global/admin-global.module').then((m) => m.AdminGlobalModule),
         canActivate: [authGuard]
+      },
+      {
+        path:'Resultat',
+        loadChildren:()=>
+          import('./views/resultat/resultat.module').then((m) => m.ResultatModule),
+        canActivate: [authGuard]
+
       }
       ,
       {

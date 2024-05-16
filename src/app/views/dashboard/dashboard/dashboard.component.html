@@ -16,9 +16,20 @@
       <h1>Manipulation Patient</h1>
       
       <div class="input-group">
-        <input type="search" placeholder="Search Data..."  />
+        <input type="search" placeholder="Search Data..." [(ngModel)]="searchEmail" (keyup)="searchByEmail()" />
         <img src="../../../../assets/img/avatar/search.png" alt="" />
       </div>
+      <div class="export__file">
+        <label for="export-file" class="export__file-btn" title="Export File"></label>
+        <input type="checkbox" id="export-file">
+        <div class="export__file-options">
+            <label>Export As &nbsp; &#10140;</label>
+            <label for="export-file" id="toPDF" >PDF <img src="../../../../assets/img/avatar/pdf.png" alt=""></label>
+            <!-- <label for="export-file" id="toJSON">JSON <img src="../../../../assets/img/avatar/json.png" alt=""></label>
+            <label for="export-file" id="toCSV">CSV <img src="../../../../assets/img/avatar/csv.png" alt=""></label>
+            <label for="export-file" id="toEXCEL">EXCEL <img src="../../../../assets/img/avatar/excel.png" alt=""></label> -->
+        </div>
+    </div>
     </section>
     <section
       class="table__body"
@@ -30,7 +41,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Address</th>          
+            <th>country</th>          
             <th>Phone</th>
             <th>gender</th>
             <th>Delete</th>
@@ -44,7 +55,7 @@
             <td>{{ patient.firstname }}</td>
             <td>{{ patient.lastname }}</td>
             <td>{{ patient.email }}</td>
-            <td>{{ patient.address }}</td>
+            <td>{{ patient.country }}</td>
             <td>{{ patient.phone }}</td>
             <td>{{ patient.gender }}</td>
             <td>
@@ -71,6 +82,17 @@
   <main class="table" id="dailypass_table">
     <section class="table__header">
       <h1>Association Daily Passes</h1>
+      <div class="export__file">
+        <label for="export-file" class="export__file-btn" title="Export File"></label>
+        <input type="checkbox" id="export-file">
+        <div class="export__file-options">
+            <label>Export As &nbsp; &#10140;</label>
+            <label for="export-file" id="toPDF" >PDF <img src="../../../../assets/img/avatar/pdf.png" alt=""></label>
+            <!-- <label for="export-file" id="toJSON">JSON <img src="../../../../assets/img/avatar/json.png" alt=""></label>
+            <label for="export-file" id="toCSV">CSV <img src="../../../../assets/img/avatar/csv.png" alt=""></label>
+            <label for="export-file" id="toEXCEL">EXCEL <img src="../../../../assets/img/avatar/excel.png" alt=""></label> -->
+        </div>
+    </div>
     </section>
     <section class="table__body" *ngIf="associationDailyPasses && associationDailyPasses.length > 0; else noassociationDailyPasses">
       <table>
@@ -106,6 +128,11 @@
   <main class="table" id="repa_table">
     <section class="table__header">
       <h1>Details des repas</h1>
+
+      <div class="input-group">
+        <input type="search" placeholder="Search Data..." [(ngModel)]="searchEmail" (keyup)="searchByEmail()" />
+        <img src="../../../../assets/img/avatar/search.png" alt="" />
+      </div>
       <div class="export__file">
         <label for="export-file" class="export__file-btn" title="Export File"></label>
         <input type="checkbox" id="export-file">

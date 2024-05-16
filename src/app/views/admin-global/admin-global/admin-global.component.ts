@@ -24,6 +24,8 @@ export class AdminGlobalComponent implements OnInit {
   totalMale:number=0;
   totalFemale:number=0;
   associationService: any;
+  pdf_btn: HTMLElement | null = null;
+
   constructor(private adminGlobalService: AdminGlobalService) { }
 
 
@@ -32,6 +34,16 @@ export class AdminGlobalComponent implements OnInit {
   ngOnInit(): void {
     this.getAllAssociations();
     this.startCounter();
+    // Initialize buttons here
+    this.pdf_btn = document.querySelector('#toPDF');
+  
+
+    // Check if pdf_btn is not null before assigning onclick handler
+    if (this.pdf_btn) {
+      this.pdf_btn.onclick = () => {
+        this.toPDF();
+      };
+    }
   }
 
 //
@@ -281,5 +293,57 @@ calculatePatientRatioByCountry() {
   
   
 
+// 3. Converting HTML table to PDF
+
+toPDF() {
+  const customers_table = document.querySelector('#customers_table2');
+  if (!customers_table) return; 
+
+  const thead = customers_table.querySelector('thead');
+  const tbody = customers_table.querySelector('tbody');
+
+  if (!thead || !tbody) return;
+
+  const html_code = 
+  `
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        ${thead.innerHTML}
+      </thead>
+      <tbody>
+        ${tbody.innerHTML}
+      </tbody>
+    </table>
+  </body>
+  </html>`;
+  
+  const new_window = window.open();
+  if (!new_window) return; 
+  new_window.document.write(html_code);
+
+  setTimeout(() => {
+    new_window.print();
+    new_window.close();
+  }, 400);
+}
 
 }

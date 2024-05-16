@@ -16,7 +16,7 @@ export class GetAllDailypassComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.dailypassService.currentAdmin().subscribe(
+      this.dailypassService.currentResponsable().subscribe(
         (response) => {
           this.userId = response.user._id;
           console.log('ID de l\'utilisateur connecté :', this.userId);
@@ -46,7 +46,7 @@ export class GetAllDailypassComponent implements OnInit {
               });
               console.log('Liste des patients sans dailypass:', this.patientsWithoutPass);
           
-              this.dailypassService.getAllAssociationDailyPass(this.dailypass._id).subscribe(
+              this.dailypassService.getAllAssociationDailyPass2(this.dailypass._id).subscribe(
                 (response) => {
                   this.patientsWithPass = response.dailypass; 
                   console.log('Liste des patients avec dailypass:', this.patientsWithPass);
@@ -77,6 +77,8 @@ export class GetAllDailypassComponent implements OnInit {
   addDailyPass(associationId: string, email: string) {
     this.dailypassService.addPatientPass(associationId, email).subscribe(
       (response) => {
+        window.location.reload();
+
         console.log('Laissez-passer quotidien ajouté avec succès.');
       },
       (error) => {

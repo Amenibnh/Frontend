@@ -10,8 +10,8 @@ export class GetAllDailypassService {
   constructor(private http: HttpClient) { }
   private apiURL = 'http://localhost:3001';
   
-  currentAdmin(): Observable<any> {
-    const url = `${this.apiURL}/currentAdmin`;
+  currentResponsable(): Observable<any> {
+    const url = `${this.apiURL}/currentResponsable`;
     const token=localStorage.getItem('token')
     // Define headers
     const headers = new HttpHeaders({
@@ -82,8 +82,8 @@ export class GetAllDailypassService {
     return this.http.get<any>(url, { headers });
   }
 
-  getAllAssociationDailyPass(associationId: string): Observable<any> {
-    const url = `${this.apiURL}/getAllAssociationDailyPass/${associationId}`;
+  getAllAssociationDailyPass2(associationId: string): Observable<any> {
+    const url = `${this.apiURL}/getAllAssociationDailyPass2/${associationId}`;
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,

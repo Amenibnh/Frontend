@@ -35,7 +35,9 @@ export class DashComponent implements OnInit {
             this.navData = [
               { label: 'Dashboard', url: '/dashboard', icon: 'fa-solid fa-house icon' },
               { label: 'DailyPass', url: '/dailypass/dailypass', icon: 'fa-solid fa-ticket icon' },
+              // { label: 'Resultat' , url:'/Resultat/Resultat' , icon:'fa-solid fa-check-circle icon'},
               { label: 'Profile', url: '/Profile/profile', icon: 'fa-solid fa-user-check icon' },
+
             ];
           }else if(this.user.role==="adminGlobal"){
             this.navData = [
