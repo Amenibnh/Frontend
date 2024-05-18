@@ -120,7 +120,7 @@ body {
     align-items: center;
 }
 /*---Popup code QR-----*/
-.popup{
+.popup {
   width: 400px;
   background: white;
   border-radius: 6px;
@@ -135,26 +135,19 @@ body {
   transition: transform 0.4s, top 0.4s;
 }
 
-.open-popup{
+.open-popup {
   visibility: visible;
   top: 50%;
   transform: translate(-50%,-50%) scale(1);
-
 }
 
-
-.popup img{
-  width: 100px;
-  margin-top: -50px;
-  border-radius: 50%;
-  box-shadow: 0 2px rgba(0, 0, 0, 0.2);
-}
-.popup h2{
+.popup h2 {
   font-size: 38px;
   font-weight: 500;
   margin: 30px 0 10px;
 }
-.popup button.btn{
+
+.popup button.btn {
   width: 100%;
   margin-top: 50px;
   padding: 10px 0;
@@ -167,10 +160,13 @@ body {
   cursor: pointer;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
-  
-.icon{
+
+.icon {
   font-size: 50px;
-  color: #3498db;
-  margin-left: 5px;
+  color: #111416;
+  margin-top: 5px;
 }
-  
+
+.download-container {
+  margin-top: 20px; /* Adjust as needed */
+}

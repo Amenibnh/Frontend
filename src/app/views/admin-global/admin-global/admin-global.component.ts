@@ -33,7 +33,7 @@ export class AdminGlobalComponent implements OnInit {
   
   ngOnInit(): void {
     this.getAllAssociations();
-    this.startCounter();
+    // this.startCounter();
     // Initialize buttons here
     this.pdf_btn = document.querySelector('#toPDF');
   
@@ -47,16 +47,17 @@ export class AdminGlobalComponent implements OnInit {
   }
 
 //
-  startCounter() {
-    // Interval to update counter every 30ms
-    this.intervalId = setInterval(() => {
-        if (this.counter === this.totalRatio) {
-            clearInterval(this.intervalId);
-        } else {
-            this.counter += 1;
-        }
-    }, 30);
-}
+//   startCounter() {
+//     // Interval to update counter every 30ms
+//     this.intervalId = setInterval(() => {
+//         if (
+//           this.counter === this.totalRatio) {
+//             clearInterval(this.intervalId);
+//         } else {
+//             this.counter += 1;
+//         }
+//     }, 30);
+// }
 
 //obtenir le nbr totale de chaque genre dans tous les association
 countGender() {

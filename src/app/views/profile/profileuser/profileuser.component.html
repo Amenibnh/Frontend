@@ -16,14 +16,18 @@
 <!-- Popup CODE QR -->
 <button *ngIf="user.role === 'user'" type="submit" (click)="openPopup($event)" class="b3">Afficher QR</button>
 <div class="popup" id="popup" *ngIf="user.role === 'user'">
-   <img src="../../../../assets/img/avatar/tick.png">
-   <h2>Thank You!</h2>
-   
-   <qrcode [qrdata]="myAngularxQrCode" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
-   <a [href]="qrCodeDownloadLink" download="qrcode"><i class="fa fa-download icon"></i></a>
-   
-   <button class="btn" type="button" (click)="closePopup()">OK</button>
+  <img src="../../../../assets/img/avatar/tick.png">
+  <h2>Thank You!</h2>
+  <img [src]="user.qrdata" alt="QR Code">
+  <div class="download-container">
+    <a [href]="qrCodeDownloadLink" download="qrcode.png" (changeURL)="onChangeURL($event)">
+      <i class="fa fa-download icon"></i>
+    </a>
+  </div>
+  <button class="btn" type="button" (click)="closePopup()">OK</button>
 </div>
+
+
 
     
     <input type="text" name="name" class="form-control form-control-lg" [(ngModel)]="user.firstname"  required >

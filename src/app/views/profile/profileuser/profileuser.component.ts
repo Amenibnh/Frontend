@@ -16,7 +16,6 @@ export class ProfileuserComponent implements OnInit {
   user: any = null; // fetching user
   errMessage: string = '';
   message: string = '';
-  myAngularxQrCode: string = "";
   qrCodeDownloadLink: SafeUrl = "";
 
 
@@ -29,9 +28,7 @@ export class ProfileuserComponent implements OnInit {
    ) { }
 
 
-  onChangeURL(url: SafeUrl) {
-    this.qrCodeDownloadLink = url;
-  }
+
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -51,13 +48,13 @@ export class ProfileuserComponent implements OnInit {
     });
   }
   generateQrCode() {
-    if (this.user) {
-
-      const qrCodeData = `${this.user.qrdata}`;
-      if (qrCodeData.trim() !== '') {
-        this.myAngularxQrCode = qrCodeData;
-      }
+    if (this.user && this.user.qrdata) {
+      this.qrCodeDownloadLink = this.sanitizer.bypassSecurityTrustUrl(this.user.qrdata);
     }
+  }
+
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
   }
 
   onFileChange(event: any) {
