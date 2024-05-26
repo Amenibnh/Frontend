@@ -214,10 +214,18 @@ calculateTotalCounts() {
 
 //lister les patients en defeculte par ville 
 calculatePatientRatioByCountry() {
+  if (!this.associations) return;
+
   // Getting all patients
+  console.log(this.associations);
+  
   const allPatients = this.associations.reduce((accumulator: any[], association: any) => {
-    return accumulator.concat(association.patients);
+    if (association.patients) {
+      return accumulator.concat(association.patients);
+    }
+    return accumulator;
   }, []);
+  console.log(allPatients);
 
   // Calculating patient count by country
   const patientCountByCountry = allPatients.reduce((accumulator: any, patient: any) => {
@@ -234,23 +242,27 @@ calculatePatientRatioByCountry() {
   }, {});
 
   console.log(this.patientRatioByCountry);
-   // Calculating total ratio
-   let totalRatio = 0;
-   for (const country in this.patientRatioByCountry) {
-       if (this.patientRatioByCountry.hasOwnProperty(country)) {
-           totalRatio += this.patientRatioByCountry[country];
-       }
-   }
+  
+  // Calculating total ratio
+  let totalRatio = 0;
+  for (const country in this.patientRatioByCountry) {
+    if (this.patientRatioByCountry.hasOwnProperty(country)) {
+      totalRatio += this.patientRatioByCountry[country];
+    }
+  }
 
-   console.log('Total ratio:', Math.floor(totalRatio));
-   this.totalRatio = Math.floor(totalRatio);
+  console.log('Total ratio:', Math.floor(totalRatio));
+  this.totalRatio = Math.floor(totalRatio);
 }
+
 
 //avoir tous les association
   getAllAssociations() {
     this.adminGlobalService.getAllAssociation().subscribe(
       (response: any) => {
         this.associations = response;
+        console.log(this.associations);
+        
         this.calculatePatientRatioByCountry();
         this.calculateTotalCounts();
         this.countGender();
@@ -265,7 +277,9 @@ calculatePatientRatioByCountry() {
   //supprimer
   deleteAssociation(id: any) {
     this.adminGlobalService.deleteAssociation(id).subscribe(
-      () => {
+      (response) => {
+        console.log('Association deleted',response);
+        this.getAllAssociations();
         window.location.reload();
       },
       (error) => {

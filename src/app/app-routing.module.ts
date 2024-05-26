@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { authGuard } from './views/auth.guard';
+import { authGuard, loggedInGuard } from './views/auth.guard';
 
 import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
@@ -97,27 +97,31 @@ const routes: Routes = [
     component: LoginComponent,
     data: {
       title: 'Login Page'
-    }
+    },
+    canActivate: [loggedInGuard]
   },
   {
     path: 'register',
     component: RegisterComponent,
     data: {
       title: 'Register Page'
-    }
+    },
+    canActivate: [loggedInGuard]
   },
   {
     path: 'forget-password',
     component: ForgetPasswordComponent,
     data: {
       title: 'forget-password Page'
-    }
+    },
+    canActivate: [loggedInGuard]
   },{
     path: 'reset-Password',
     component: ResetPasswordComponent,
     data: {
       title: 'reset-Password Page'
-    }
+    },
+    canActivate: [loggedInGuard]
   },
   {
     path: 'ameni',

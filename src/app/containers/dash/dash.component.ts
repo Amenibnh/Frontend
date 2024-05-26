@@ -31,7 +31,7 @@ export class DashComponent implements OnInit {
         (response) => {
           this.user = response.user;
 
-          if(this.user.role==="admin"||this.user.role==="responsable"  ){
+          if(this.user.role==="admin"  ){
             this.navData = [
               { label: 'Dashboard', url: '/dashboard', icon: 'fa-solid fa-house icon' },
               { label: 'DailyPass', url: '/dailypass/dailypass', icon: 'fa-solid fa-ticket icon' },
@@ -47,7 +47,19 @@ export class DashComponent implements OnInit {
             ];
             this.pageTitle='Statistic';
             
-          }else{
+          }
+          else if(this.user.role==="responsable"){
+            this.navData = [
+              { label: 'Dashboard', url: '#', icon: 'fa-solid fa-house icon' },
+              { label: 'DailyPass', url: '/dailypass/dailypass', icon: 'fa-solid fa-ticket icon' },
+              // { label: 'Resultat' , url:'/Resultat/Resultat' , icon:'fa-solid fa-check-circle icon'},
+              { label: 'Profile', url: '/Profile/profile', icon: 'fa-solid fa-user-check icon' },
+
+            ];
+          
+            
+          }
+          else{
             this.navData=[
               { label: 'Profile', url: '/Profile/profile', icon: 'fa-solid fa-user-check icon' },
             ];
