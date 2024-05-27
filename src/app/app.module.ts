@@ -79,7 +79,7 @@ const APP_CONTAINERS = [DashComponent];
     ReactiveFormsModule,
     QRCodeModule,
     FontAwesomeModule,
-    RouterModule,
+    RouterModule.forRoot([]),
     
   ],
   providers: [

@@ -11,6 +11,7 @@ import { Router } from '@angular/router'; // Import the Router module
 export class LoginComponent {
 email:string=""
 password: string=""
+subdomain: string=""
 errMessage:string=""
 errorbool:boolean=false;
 
@@ -54,7 +55,7 @@ if(this.email=="" ){
     //   console.log(this.errMessage)
     // }
 }else{
-      this.apiservice.login(this.email,this.password).subscribe((Response:any)=>{
+      this.apiservice.login(this.email,this.password,this.subdomain).subscribe((Response:any)=>{
         const token=Response.token;
         // Enregistrement de token de l'utilisateur(local stotage)
         localStorage.setItem('token', token);
