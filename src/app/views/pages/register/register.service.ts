@@ -10,9 +10,12 @@ export class RegisterService {
  constructor(private http: HttpClient) { }
   private apiURL = 'http://localhost:3001';
 
-  register(firstname: string, lastname: string, email: string, address: string, country: string, password: string, repeatpassword: string,phone:string,gender:string,disabilityType:string) {
+  register(firstname: string, lastname: string, email: string, address: string, ville: string, password: string, repeatpassword: string,phone:string,gender:string,disabilityType:string,role:string,secretKey:string) {
     const url = `${this.apiURL}/register`;
-    const body = { firstname, lastname, email, address, country, password, repeatpassword ,phone,gender,disabilityType};
+    let body:any = { firstname, lastname, email, address, ville, password, repeatpassword ,phone,gender,role,secretKey};
+    if(role === 'user'){
+      body={...body, disabilityType};
+    }
     return this.http.post<any>(url, body);
   }
 

@@ -22,7 +22,7 @@ body{
 
 .container{
     width: 430px;
-    height: 580px;
+    height: 680px;
     position: relative;
     box-shadow: 0 0 8px rgba(0,0,0,0.3);
     border-radius: 6px;
@@ -177,6 +177,51 @@ body{
     color: black;
     top: 0%;
     transform: translateY(-50%) scale(0.85);
+}
+.box {
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+}
+
+.box label {
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.box input[type="radio"] {
+  margin-right: 5px;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #999;
+  outline: none;
+  cursor: pointer;
+}
+
+.box input[type="radio"]:checked {
+  background-color: #1d3cad;
+  border-color: #1d3cad;
+}
+
+.box input[type="radio"]:hover {
+  transform: scale(1.1);
+}
+
+.box input[type="radio"]::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #FFF;
+  transform: scale(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+.box input[type="radio"]:checked::before {
+  transform: scale(1);
 }
 
 .form .btn-group{

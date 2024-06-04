@@ -53,8 +53,8 @@ export class UpdateComponent {
     } else if (!this.association.admin || !emailRegex.test(this.association.admin)) {
       this.errMessage = "Please enter a valid email address for the admin.";
       return;
-    } else if (!this.association.country) {
-      this.errMessage = "Please add your country.";
+    } else if (!this.association.ville) {
+      this.errMessage = "Please add your ville.";
       return;
     } else if (!this.association.region) {
       this.errMessage = "Please add your region.";
@@ -69,7 +69,7 @@ export class UpdateComponent {
         description: this.association.description,
         responsable: this.association.responsable,
         admin: this.association.admin,
-        country: this.association.country,
+        ville: this.association.ville,
         region: this.association.region,
         zip_code: this.association.zip_code
       };

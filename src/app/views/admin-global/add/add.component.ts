@@ -43,7 +43,7 @@ export class AddComponent {
       this.association.description &&
       this.association.responsable &&
       this.association.admin &&
-      this.association.country &&
+      this.association.ville &&
       this.association.region &&
       this.association.zip_code
     );

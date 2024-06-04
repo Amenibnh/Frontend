@@ -19,7 +19,8 @@ export class RegisterComponent implements OnInit {
   lastname:string=""
   email: string = ""
   address:string=""
-  country:string=""
+  ville:string=""
+  role:string=""
   phone:string=""
   gender:string=""
   password: string = ""
@@ -27,6 +28,7 @@ export class RegisterComponent implements OnInit {
   disabilityType:string=""
   errMessage: string = ""
   errorbool: boolean = false;
+  secretKey: string='';
   
   constructor(private apiservice: RegisterService, private router: Router) { }
 
@@ -53,6 +55,7 @@ export class RegisterComponent implements OnInit {
   /*---------------Sign Up----------------- */
 
   register() {
+    
     //reg expression
     const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
     this.errMessage = "";
@@ -82,14 +85,14 @@ export class RegisterComponent implements OnInit {
       this.errMessage = "Address is empty"
       console.log(this.errMessage)
 
-    }else if (this.disabilityType == "") {
+    }else if (this.role==='user' && this.disabilityType === "") {
       this.errorbool = !this.errorbool
       this.errMessage = "disabilityType is empty"
       console.log(this.errMessage)
 
-    }else if (this.country == "") {
+    }else if (this.ville == "") {
       this.errorbool = !this.errorbool
-      this.errMessage = "Please select your country";
+      this.errMessage = "Please select your ville";
       console.log(this.errMessage)
 
     }else if (this.phone == "") {
@@ -114,7 +117,7 @@ export class RegisterComponent implements OnInit {
       this.errMessage = "Password doesn't match!"
       console.log(this.errMessage)
     }else {
-      this.apiservice.register(this.firstname, this.lastname, this.email, this.address, this.country, this.password, this.repeatpassword,this.phone,this.gender,this.disabilityType).subscribe((Response: any) => {
+      this.apiservice.register(this.firstname, this.lastname, this.email, this.address, this.ville, this.password, this.repeatpassword,this.phone,this.gender,this.disabilityType,this.role,this.secretKey).subscribe((Response: any) => {
        
         // Use the router to navigate to the login
         this.router.navigate(['/login']);

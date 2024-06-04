@@ -125,7 +125,7 @@ generateGenderChart() {
   }
 }
 
-//afficher la repartition des patients par country
+//afficher la repartition des patients par ville
 generateCountryChart() {
   const chartElement = document.getElementById('countryChart') as HTMLCanvasElement;
   if (chartElement) {
@@ -227,17 +227,17 @@ calculatePatientRatioByCountry() {
   }, []);
   console.log(allPatients);
 
-  // Calculating patient count by country
+  // Calculating patient count by ville
   const patientCountByCountry = allPatients.reduce((accumulator: any, patient: any) => {
-    const country = patient.country; 
-    accumulator[country] = (accumulator[country] || 0) + 1;
+    const ville = patient.ville; 
+    accumulator[ville] = (accumulator[ville] || 0) + 1;
     return accumulator;
   }, {});
 
   // Calculating ratio
   const totalPatients = allPatients.length;
-  this.patientRatioByCountry = Object.keys(patientCountByCountry).reduce((ratioObject: any, country: string) => {
-    ratioObject[country] = Math.floor(patientCountByCountry[country] / totalPatients * 100);
+  this.patientRatioByCountry = Object.keys(patientCountByCountry).reduce((ratioObject: any, ville: string) => {
+    ratioObject[ville] = Math.floor(patientCountByCountry[ville] / totalPatients * 100);
     return ratioObject;
   }, {});
 
@@ -245,9 +245,9 @@ calculatePatientRatioByCountry() {
   
   // Calculating total ratio
   let totalRatio = 0;
-  for (const country in this.patientRatioByCountry) {
-    if (this.patientRatioByCountry.hasOwnProperty(country)) {
-      totalRatio += this.patientRatioByCountry[country];
+  for (const ville in this.patientRatioByCountry) {
+    if (this.patientRatioByCountry.hasOwnProperty(ville)) {
+      totalRatio += this.patientRatioByCountry[ville];
     }
   }
 
@@ -295,7 +295,7 @@ calculatePatientRatioByCountry() {
     } else {
       // Filtrer les associations par pays en comparant la première lettre
       this.associations = this.associations.filter((association: any) => 
-        association.country.toLowerCase().startsWith(this.searchCountry.toLowerCase())
+        association.ville.toLowerCase().startsWith(this.searchCountry.toLowerCase())
       );
       
       // Recalculer les statistiques
