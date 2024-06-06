@@ -18,7 +18,12 @@ export class AddService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    
+    console.log('association data:',associationData);
     return this.http.post<any>(url, associationData, { headers });
   }
+
+  // getAssociationBySubdomain(subdomain: string): Observable<any> {
+  //   const url = `${this.apiURL}/association/${subdomain}`;
+  //   return this.http.get<any>(url);
+  // }
 }

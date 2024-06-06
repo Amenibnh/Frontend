@@ -45,7 +45,8 @@ export class AddComponent {
       this.association.admin &&
       this.association.ville &&
       this.association.region &&
-      this.association.zip_code
+      this.association.zip_code 
     );
+
   }
 }
