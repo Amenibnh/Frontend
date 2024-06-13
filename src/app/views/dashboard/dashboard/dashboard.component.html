@@ -14,7 +14,9 @@
   <main class="table" id="customers_table">
     <section class="table__header">
       <h1>Manipulation Patient</h1>
-      
+      <a [href]="'/#/dashboard/add' ">
+        <button class="btn add">Add</button>
+     </a>
       <div class="input-group">
         <input type="search" placeholder="Search Data..." [(ngModel)]="searchEmail" (keyup)="searchByEmail()" />
         <img src="../../../../assets/img/avatar/search.png" alt="" />

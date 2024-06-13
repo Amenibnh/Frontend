@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {DashboardComponent} from './dashboard/dashboard.component'
 import { UpdateComponent } from '../dashboard/update/update.component';
+import { AddComponent } from '../dashboard/add/add.component';
 const routes: Routes = [
   {
     path: '',
@@ -15,6 +16,13 @@ const routes: Routes = [
     component: UpdateComponent,
     data: {
       title: 'update'
+    }
+  },
+  {
+    path: 'add',
+    component: AddComponent,
+    data: {
+      title: 'Add'
     }
   }
 
