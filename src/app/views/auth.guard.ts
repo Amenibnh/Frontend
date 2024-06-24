@@ -2,9 +2,12 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
 export const authGuard: CanActivateFn = (route, state) => {
+  
   const _router=inject(Router)
+
   let token=localStorage.getItem("token");
   console.log(token)
+
   if(token){
     return true;
   }else{
@@ -17,8 +20,11 @@ export const authGuard: CanActivateFn = (route, state) => {
 
 export const loggedInGuard: CanActivateFn =(route, state) =>{
   const _router=inject(Router)
+
   let token=localStorage.getItem("token");
-  console.log(token)
+  
+  // console.log(token)
+  console.log('loggedInGuard - token:', token);
 
   if(token){
     const confirmLogout = confirm("Vous etes déja connecté. Voules-vous vous déconnecter et aller a la page de connexion ?");

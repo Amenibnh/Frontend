@@ -32,11 +32,57 @@ export class AppComponent implements OnInit {
 
         // Determine the base URL based on the port
         let baseUrl = '';
-        if (port === '4400') {
-          baseUrl = 'http://gabes.localhost:4400';
-        } else if (port === '4200') {
+        if (port === '4200') {
           baseUrl = 'http://medenine.localhost:4200';
-        }else{
+        } else if (port === '4400') {
+          baseUrl = 'http://gabes.localhost:4400';
+        } else if (port === '4300') {
+          baseUrl = 'http://ariana.localhost:4300';
+        } else if (port === '4500') {
+          baseUrl = 'http://beja.localhost:4500';
+        } else if (port === '4600') {
+          baseUrl = 'http://benarous.localhost:4600';
+        } else if (port === '4700') {
+          baseUrl = 'http://bizerte.localhost:4700';
+        } else if (port === '4800') {
+          baseUrl = 'http://gafsa.localhost:4800';
+        } else if (port === '4900') {
+          baseUrl = 'http://jendouba.localhost:4900';
+        } else if (port === '5000') {
+          baseUrl = 'http://kairouan.localhost:5000';
+        } else if (port === '5100') {
+          baseUrl = 'http://kasserine.localhost:5100';
+        } else if (port === '5200') {
+          baseUrl = 'http://kebili.localhost:5200';
+        } else if (port === '5300') {
+          baseUrl = 'http://lekef.localhost:5300';
+        } else if (port === '5400') {
+          baseUrl = 'http://mahdia.localhost:5400';
+        } else if (port === '5500') {
+          baseUrl = 'http://lamanouba.localhost:5500';
+        } else if (port === '5600') {
+          baseUrl = 'http://monastir.localhost:5600';
+        } else if (port === '5700') {
+          baseUrl = 'http://nabeul.localhost:5700';
+        } else if (port === '5800') {
+          baseUrl = 'http://sfax.localhost:5800';
+        } else if (port === '5900') {
+          baseUrl = 'http://sidibouzid.localhost:5900';
+        } else if (port === '6000') {
+          baseUrl = 'http://siliana.localhost:6000';
+        } else if (port === '6100') {
+          baseUrl = 'http://sousse.localhost:6100';
+        } else if (port === '6200') {
+          baseUrl = 'http://tataouine.localhost:6200';
+        } else if (port === '6300') {
+          baseUrl = 'http://tozeur.localhost:6300';
+        } else if (port === '6400') {
+          baseUrl = 'http://tunis.localhost:6400';
+        } else if (port === '6500') {
+          baseUrl = 'http://zaghouan.localhost:6500';
+        }else if (port === '4000') {
+          baseUrl = 'http://adminGlobal.localhost:4000';
+        } else{
           baseUrl = 'http://localhost:4200/404';
         }
 

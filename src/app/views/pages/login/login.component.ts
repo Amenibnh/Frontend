@@ -11,7 +11,7 @@ import { Router } from '@angular/router'; // Import the Router module
 export class LoginComponent {
 email:string=""
 password: string=""
-subdomain: string=""
+url: String=""
 errMessage:string=""
 errorbool:boolean=false;
 
@@ -54,6 +54,7 @@ if(this.email=="" ){
     //   this.errMessage = "Password length must be >= 8"
     //   console.log(this.errMessage)
     // }
+    
 }else{
       this.apiservice.login(this.email,this.password).subscribe((Response:any)=>{
         const token=Response.token;
