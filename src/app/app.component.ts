@@ -33,9 +33,9 @@ export class AppComponent implements OnInit {
         // Determine the base URL based on the port
         let baseUrl = '';
         if (port === '4200') {
-          baseUrl = 'http://medenine.localhost:4200';
+          baseUrl = 'http://gabes.localhost:4200';
         } else if (port === '4400') {
-          baseUrl = 'http://gabes.localhost:4400';
+          baseUrl = 'http://medenine.localhost:4400';
         } else if (port === '4300') {
           baseUrl = 'http://ariana.localhost:4300';
         } else if (port === '4500') {
